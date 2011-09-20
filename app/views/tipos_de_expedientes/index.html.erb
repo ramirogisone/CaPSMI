@@ -1,0 +1,34 @@
+<div id='main' >
+	<h1>Tipos de expedientes</h1>
+	<p>
+		<%= link_to 'Nuevo tipo de expediente', new_tipo_de_expediente_path %>
+	</p>
+	<p>
+		<%= will_paginate @tipos_de_expedientes, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+    </p>
+    <table>
+		<tr>
+			<th>Id</th>
+			<th>Posicion</th>
+			<th>Nombre</th>
+			<th>Observación</th>
+			<th>Ruta predef.</th>
+			<th>Borrar</th>
+		</tr>
+		<% @tipos_de_expedientes.each do |tipo_de_expediente| %>
+			<tr>
+				<td><%=h tipo_de_expediente.id %></td>
+				<td><%=h tipo_de_expediente.posicion %></td>
+				<td><%=link_to tipo_de_expediente.nombre, edit_tipo_de_expediente_path(tipo_de_expediente)  %></td>
+				<td><%=h tipo_de_expediente.observacion %></td>
+				<td align='center'><%=button_to ' => ',
+					tipo_de_expediente_rutas_predefinidas_path(tipo_de_expediente), :method => :get %></td>
+				<td align='center'><%=button_to 'X', tipo_de_expediente,
+					:confirm => 'Está seguro ?', :method => :delete, :disabled => permiso?('B') %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @tipos_de_expedientes, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

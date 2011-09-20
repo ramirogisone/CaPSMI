@@ -1,0 +1,108 @@
+<div id='main' >
+  <h1>Afiliados</h1>
+	<p>
+		<%= will_paginate @afiliados, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Nacimiento</th>
+      <th>Fallecimiento</th>
+      <th>Lugar nacimiento</th>
+      <th>Tipo documento</th>
+      <th>Documento</th>
+      <th>Estado civil</th>
+      <th>Titulo</th>
+      <th>Universidad</th>
+      <th>Fecha titulo</th>
+      <th>Matricula</th>
+      <th>Fecha matricula</th>
+      <th>Colegio profesional</th>
+      <th>Numero colegio profesional</th>
+      <th>Cuit</th>
+      <th>Inicio devengamiento</th>
+      <th>Final devengamiento</th>
+      <th>Inicio afiliacion</th>
+      <th>Codigo agrupacion</th>
+      <th>Sexo</th>
+      <th>Observaciones</th>
+      <th>Domicilio particular</th>
+      <th>Ciudad particular</th>
+      <th>Codigo postal particular</th>
+      <th>Provincia particular</th>
+      <th>Telefonos particular</th>
+      <th>Fax particular</th>
+      <th>E mail particular</th>
+      <th>Domicilio profesional</th>
+      <th>Ciudad profesional</th>
+      <th>Codigo postal profesional</th>
+      <th>Provincia profesional</th>
+      <th>Telefonos profesional</th>
+      <th>Fax profesional</th>
+      <th>E mail profesional</th>
+      <th>Regimen iva</th>
+      <th>Area geografica</th>
+      <th>Fec grab</th>
+      <th>Hor grab</th>
+      <th>Usr grab</th>
+      <th>Wks grab</th>
+      <th>Tip grab</th>
+      <th>Borrar</th>
+    </tr>
+    <% @afiliados.each do |afiliado| %>
+      <tr>
+        <td><%=h afiliado.id %></td>
+        <td><%= link_to afiliado.nombre, edit_afiliado_path(afiliado) %></td>
+        <td><%=h afiliado.nacimiento %></td>
+        <td><%=h afiliado.fallecimiento %></td>
+        <td><%=h afiliado.lugar_nacimiento %></td>
+        <td><%=h afiliado.tipo_documento %></td>
+        <td><%=h afiliado.documento %></td>
+        <td><%=h afiliado.estado_civil %></td>
+        <td><%=h afiliado.titulo %></td>
+        <td><%=h afiliado.universidad %></td>
+        <td><%=h afiliado.fecha_titulo %></td>
+        <td><%=h afiliado.matricula %></td>
+        <td><%=h afiliado.fecha_matricula %></td>
+        <td><%=h afiliado.colegio_profesional %></td>
+        <td><%=h afiliado.numero_colegio_profesional %></td>
+        <td><%=h afiliado.cuit %></td>
+        <td><%=h afiliado.inicio_devengamiento %></td>
+        <td><%=h afiliado.final_devengamiento %></td>
+        <td><%=h afiliado.inicio_afiliacion %></td>
+        <td><%=h afiliado.codigo_agrupacion %></td>
+        <td><%=h afiliado.sexo %></td>
+        <td><%=h afiliado.observaciones %></td>
+        <td><%=h afiliado.domicilio_particular %></td>
+        <td><%=h afiliado.ciudad_particular %></td>
+        <td><%=h afiliado.codigo_postal_particular %></td>
+        <td><%=h afiliado.provincia_particular %></td>
+        <td><%=h afiliado.telefonos_particular %></td>
+        <td><%=h afiliado.fax_particular %></td>
+        <td><%=h afiliado.e_mail_particular %></td>
+        <td><%=h afiliado.domicilio_profesional %></td>
+        <td><%=h afiliado.ciudad_profesional %></td>
+        <td><%=h afiliado.codigo_postal_profesional %></td>
+        <td><%=h afiliado.provincia_profesional %></td>
+        <td><%=h afiliado.telefonos_profesional %></td>
+        <td><%=h afiliado.fax_profesional %></td>
+        <td><%=h afiliado.e_mail_profesional %></td>
+        <td><%=h afiliado.regimen_iva %></td>
+        <td><%=h afiliado.area_geografica %></td>
+        <td><%=h afiliado.fec_grab %></td>
+        <td><%=h afiliado.hor_grab %></td>
+        <td><%=h afiliado.usr_grab %></td>
+        <td><%=h afiliado.wks_grab %></td>
+        <td><%=h afiliado.tip_grab %></td>
+        <td id='link'>
+           <%= link_to 'X'.center(10).gsub(' ','&nbsp'),
+            afiliado, :confirm => 'Esta seguro ?', :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+	<p>
+		<%= will_paginate @afiliados, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

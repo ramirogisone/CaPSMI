@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  apellido: MyString
+  nombres: MyString
+  nacimiento: 2011-07-14
+  tipo_documento: MyString
+  documento: 1.5
+  cuil: 1.5
+  estado_civil: MyString
+  domicilio: MyString
+  ciudad: MyString
+  codigo_postal: MyString
+  telefonos: MyString
+  ingreso: 2011-07-14
+  categoria: MyString
+  egreso: 2011-07-14
+
+two:
+  apellido: MyString
+  nombres: MyString
+  nacimiento: 2011-07-14
+  tipo_documento: MyString
+  documento: 1.5
+  cuil: 1.5
+  estado_civil: MyString
+  domicilio: MyString
+  ciudad: MyString
+  codigo_postal: MyString
+  telefonos: MyString
+  ingreso: 2011-07-14
+  categoria: MyString
+  egreso: 2011-07-14

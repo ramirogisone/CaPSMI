@@ -1,0 +1,5 @@
+<div id='main' >
+	<h1>Usuario: <%= "\"#{@user.id} - #{@user.login}\"" %> </h1>
+	<h2>Agregar link asociado</h2>
+	<%= render :partial => 'form', :locals => {:boton => 'Crear'} %>
+</div>

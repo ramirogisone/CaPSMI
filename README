@@ -1,0 +1,48 @@
+Ramiro:
+
+	- En impresion de comprobante de compras, mover el total al pie.
+
+	- Idea general:
+		Grabar el comprobante de compras con su respectiva línea de movimiento.
+	- Algoritmo:
+		En base al campo "total" en la acción "create" agregar una linea a la tabla
+		"cuentas_de_proveedores"
+			- Instanciar un objeto clase "cuenta_de_proveedor"
+			- completar los campos necesarios
+			- haver ".save"
+	- Validar que el total > 0
+	
+Adriana:
+
+	- idea general: programar un listado que muestre todos los expediente a
+		cierta fecha con la instancia en que se encuentra cada uno y la cantidad
+		de dias transcurridos en dicha instancia. Opción "Listado con instancias"
+	- Validar la fecha
+	- Sumar una condicion de filtro para aquellos expedientes que se
+		encuentren con permanencia en su instancia mayor al plazo
+		estimado (OJO !!! campo "dias_plazo" a incorporar en la tabla
+		"movimientos_de_mesa_de_entrada")
+		
+		
+		select * from
+		expedientes e, 
+		comprobantes_de_mesa_de_entrada c,
+		movimientos_de_mesa_de_entrada m
+		where
+		c.fecha <= @fecha and
+		m.expediente_id = e.id
+		group by m.expediente_id
+		
+		
+Jorge:
+
+@consulta = Expediente.find(:all,
+	:select => '*, expedientes.id AS id_exp, MAX(movimientos_de_mesa_de_entrada.updated_at) AS maximo',
+	:group => 'movimientos_de_mesa_de_entrada.expediente_id',
+	:joins => "LEFT OUTER JOIN movimientos_de_mesa_de_entrada ON expedientes.id = movimientos_de_mesa_de_entrada.expediente_id")
+@consulta.each do |c|
+	puts c.id_exp, c.maximo
+end
+
+
+nadanadanada

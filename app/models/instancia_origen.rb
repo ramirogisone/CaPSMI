@@ -1,0 +1,4 @@
+class InstanciaOrigen < Instancia
+end
+
+

@@ -1,0 +1,42 @@
+<div id='main' >
+	<h1>Comprobante de mesa de entrada:</h1>
+	<h1><%=h "\"#{@comprobante_de_mesa_de_entrada.tipo} - #{@comprobante_de_mesa_de_entrada.numero} - #{@comprobante_de_mesa_de_entrada.fecha}\"" %></h1>
+	<h2>Líneas</h2>
+	<p>
+		<%= link_to 'Nueva línea', new_comprobante_de_mesa_de_entrada_movimiento_de_mesa_de_entrada_path %>
+	</p>
+	<p>
+		<%= will_paginate @movimientos_de_mesa_de_entrada, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th colspan='2'>Expediente</th>
+			<th colspan='2'>Instancia origen</th>
+			<th colspan='2'>Instancia destino</th>
+			<th>Tipo</th>
+			<th>Dias plazo</th>
+			<th>Informe</th>
+			<th>Borrar</th>
+		</tr>
+		<% @movimientos_de_mesa_de_entrada.each do |movimiento_de_mesa_de_entrada| %>
+			<tr>
+				<td><%=h movimiento_de_mesa_de_entrada.expediente_id %></td>
+				<td><%= link_to movimiento_de_mesa_de_entrada.expediente.nombre,
+						 edit_comprobante_de_mesa_de_entrada_movimiento_de_mesa_de_entrada_path(@comprobante_de_mesa_de_entrada, movimiento_de_mesa_de_entrada) %></td>
+				<td><%=h movimiento_de_mesa_de_entrada.instancia_origen_id %></td>
+				<td><%=h movimiento_de_mesa_de_entrada.instancia_origen.nombre %></td>
+				<td><%=h movimiento_de_mesa_de_entrada.instancia_destino_id %></td>
+				<td><%=h movimiento_de_mesa_de_entrada.instancia_destino.nombre %></td>
+				<td><%=h movimiento_de_mesa_de_entrada.tipo %></td>
+				<td align='right'><%=h movimiento_de_mesa_de_entrada.dias_plazo %></td>
+				<td><%=h movimiento_de_mesa_de_entrada.informe %></td>
+				<td align='center'><%= button_to 'X', [@comprobante_de_mesa_de_entrada,
+					movimiento_de_mesa_de_entrada], :confirm => 'Está seguro ?',
+					:method => :delete, :disabled => permiso?('B') %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= link_to 'Comprobantes', comprobantes_de_mesa_de_entrada_path %>
+	</p>	
+</div>

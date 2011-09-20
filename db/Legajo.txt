@@ -1,0 +1,1 @@
+legajo apellido:string nombres:string nacimiento:date tipo_documento:string documento:float cuil:float estado_civil:string domicilio:string ciudad:string codigo_postal:string telefonos:string ingreso:date categoria:string egreso:date

@@ -1,0 +1,41 @@
+<% form_for(@importacion_de_vencimiento, :html => { :multipart => true }) do |f| %>
+    <%= f.error_messages %>
+    <table>
+        <tr>
+            <th><%= f.label :archivo_csv %></th>
+            <td>
+                <% if boton != 'Show' %>
+                    <%= f.file_field :archivo_csv %><br/>
+                <% end %>
+                <%= f.text_area :archivo_csv, :size => '60x2', :disabled => true %>
+            </td>
+        </tr>
+        <tr>
+            <th><%= f.label :fecha %></th>
+            <td><%= f.text_field :fecha, :size => '8', :disabled => boton == 'Show' %></td>
+        </tr>
+        <tr>
+            <th><%= f.label :id %></th>
+            <td><%= f.text_field :id, :size => '8', :disabled => true %></td>
+        </tr>
+    </table>
+    <p>
+        <% if boton == 'Show' %>
+            <%= link_to 'Editar', edit_importacion_de_vencimiento_path(@paciente) %> |
+            <%= link_to 'Listar', importaciones_de_vencimientos_path %> |
+            <%= link_to 'Nueva importacion', new_importacion_de_vencimiento_path %>
+        <% else %>
+            <%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			<%= link_to 'Cancelar', importaciones_de_vencimientos_path %>
+        <% end %>
+    </p>
+    <table>
+        <tr>
+            <th><%= f.label :informe %></th>
+        </tr>
+        <tr>
+            <td><%= f.text_area :informe,
+                :size => '65x5', :disabled => boton == 'Show' %></td>
+        </tr>
+    </table>
+<% end %>

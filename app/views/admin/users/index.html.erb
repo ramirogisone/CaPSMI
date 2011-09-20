@@ -1,0 +1,31 @@
+<div id='main' >
+	<h1>Usuarios</h1>
+	<p>
+		<%= link_to 'Nuevo usuario', new_admin_user_path %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Usuario</th>
+			<th>Nombre</th>
+			<th>Ultimo log-in</th>
+			<th>Ultima ip</th>
+			<th>Links</th>
+			<th>Borrar</th>
+		</tr>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%=h user.id %></td>
+				<td><%= link_to user.login, edit_admin_user_path(user) %></td>
+				<td><%=h user.nombre %></td>
+				<td><%=h user.last_login_at %></td>
+				<td><%=h user.last_login_ip %></td>
+				<td><%=button_to ' => ', admin_user_users_links_path(user), :method => :get %></td>
+				<td id='link' align='center'>
+					<%=button_to 'X', [:admin, user], :confirm => 'Esta seguro ?',
+						:method => :delete, :disabled => permiso?('B') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</div>

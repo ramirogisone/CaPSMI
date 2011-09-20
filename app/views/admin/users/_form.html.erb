@@ -1,0 +1,58 @@
+<% form_for([:admin, @user]) do |f| %>
+  <%= f.error_messages %>
+  <table>
+		<tr><th><%= f.label :login %></th>
+			<td><%= f.text_field :login,
+				:disabled => boton == 'Show' %></td></tr>
+
+		<tr><th><%= f.label :clave, f.object.new_record? ?
+				nil : 'Cambiar clave' %></th>
+			<td><%= f.password_field :password,
+				:disabled => boton == 'Show' %></td></tr>
+
+		<tr><th><%= f.label :confirmacion_de_clave %></th>
+			<td><%= f.password_field :password_confirmation,
+				:disabled => boton == 'Show' %></td></tr>
+
+		<tr><th><%= f.label :nombre %></th>
+			<td><%= f.text_field :nombre,
+				:disabled => boton == 'Show' %></td></tr>
+		<tr><th><%= f.label :email %></th>
+			<td><%= f.text_field :email,
+				:disabled => boton == 'Show' %></td></tr>
+
+		<tr><th><%= f.label :login_oks %></th>
+			<td><%= f.text_field :login_count,
+				:size => 5, :disabled => true %></td></tr>
+		<tr><th><%= f.label :login_fallidos %></th>
+			<td><%= f.text_field :failed_login_count,
+				:size => 5, :disabled => true %></td></tr>
+		<tr><th><%= f.label :ultima_solicitud %></th>
+			<td><%= f.text_field :last_request_at,
+				:size => 50, :disabled => true %></td></tr>
+		<tr><th><%= f.label :actual_login %></th>
+			<td><%= f.text_field :current_login_at,
+				:size => 50, :disabled => true %></td></tr>
+		<tr><th><%= f.label :ultimo_login %></th>
+			<td><%= f.text_field :last_login_at,
+				:size => 50, :disabled => true %></td></tr>
+		<tr><th><%= f.label :actual_ip %></th>
+			<td><%= f.text_field :current_login_ip,
+				:size => 20, :disabled => true %></td></tr>
+		<tr><th><%= f.label :ultima_ip %></th>
+			<td><%= f.text_field :last_login_ip,
+				:size => 20, :disabled => true %></td></tr>
+		<tr><th><%= f.label :id %></th>
+			<td><%= f.text_field :id,
+				:disabled => true %></td></tr>
+	</table>
+  <p>
+	<% if boton == 'Show' %>
+	  <%= link_to 'Editar', edit_admin_user_path(@user) %> |
+	  <%= link_to 'Cancelar', admin_users_path %>
+	<% else %>
+	  <%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+	  <%= link_to 'Cancelar', admin_users_path %>
+	<% end %>
+  </p>
+<% end %>

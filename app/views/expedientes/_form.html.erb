@@ -1,0 +1,59 @@
+<% form_for(@expediente) do |f| %>
+	<%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :nombre %></th>
+			<td><%= f.text_field :nombre, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :tipo_de_expediente %></th>
+			<td>
+				<% if boton == 'Show' %>
+					<%= f.text_field :nombre_tipo, :disabled => true %>
+				<% else %>
+					<%= f.select :tipo_de_expediente_id,
+						@tipos.collect {|t| ["#{t.posicion} - #{t.nombre}", t.id]}, 
+						:include_blank => 'Elija un tipo', :disabled => boton == 'Show'  %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :observaciones %></th>
+			<td><%= f.text_area :observaciones, :size => '40x4',
+				:disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :afiliado %></th>
+			<td>
+				<% if boton == 'Show' %>
+					<%= f.text_field :nombre_afiliado, :disabled => true %>
+				<% else %>
+					<%= f.select :afiliado_id, @afiliados.collect {|a| ["#{a.nombre}", a.id]},
+						:include_blank => 'Elija un afiliado', :disabled => boton == 'Show'  %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :fecha_de_apertura %></th>
+			<td><%= f.text_field :fecha_de_apertura, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+		<tr>
+			<th><%= f.label :id %></th>
+			<td><%= f.text_field :id, :size => 8, :disabled => true %></td>
+		</tr>
+	</table>
+	<% if !defined? no_links %>
+		<p>
+			<% if boton == 'Show' %>
+				<%= link_to 'Impulsar', {:controller => 'movimientos_de_mesa_de_entrada',
+					:action => 'impulsa_expediente', :expediente_id => @expediente} %> |
+				<%= link_to 'Editar', edit_expediente_path(@expediente) %> |
+				<%= link_to 'Listar', expedientes_path  %>
+			<% else %>
+				<%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+				<%= link_to 'Cancelar', expedientes_path %>
+			<% end %>
+		</p>
+	<% end %>
+<% end %>

@@ -1,0 +1,2 @@
+class InstanciaDestino < Instancia
+end

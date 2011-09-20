@@ -1,0 +1,5 @@
+<div id='main' >
+	<h1>Opción: <%= "\"#{@link.posicion} - #{@link.nombre}\"" %> </h1>
+	<h2>Editar usuario asociado</h2>
+<%= render :partial => 'form', :locals => {:boton => 'Actualizar'} %>
+</div>

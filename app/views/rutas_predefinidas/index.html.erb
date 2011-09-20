@@ -1,0 +1,42 @@
+<div id='main' >
+	<h1>Tipo de expediente: <%=h "\"#{@tipo_de_expediente.posicion} - #{@tipo_de_expediente.nombre}\"" %></h1>
+	<h2>Ruta predefinida</h2>
+    <p>
+        <%= link_to 'Nuevo paso', new_tipo_de_expediente_ruta_predefinida_path %>
+    </p>
+    <p>
+        <%= will_paginate @rutas_predefinidas, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+    </p>
+    <table>
+        <tr>
+			<th>Paso</th>
+			<th>Instancia</th>
+			<th>Dias plazo</th>
+			<th>Id</th>
+			<th>Borrar</th>
+			<th colspan='2'>Mover</th>
+		</tr>
+
+		<% @rutas_predefinidas.each do |ruta_predefinida| %>
+			<tr>
+				<td align='center' title='Editar paso'>
+					<%=link_to ruta_predefinida.paso,
+						edit_tipo_de_expediente_ruta_predefinida_path(@tipo_de_expediente, ruta_predefinida) %>
+				</td>
+				<td><%=h ruta_predefinida.instancia.nombre %></td>
+				<td align='center'><%=h ruta_predefinida.dias_plazo %></td>
+				<td align='center'><%=h ruta_predefinida.id %></td>
+				<td id='link' align='center'><%=button_to 'X', [@tipo_de_expediente,
+					ruta_predefinida], :confirm => 'Está seguro ?',
+					:method => :delete, :disabled => permiso?('B') %></td>
+				<td align='center' title='Arriba'><%= button_to '/\\', :action => 'mueve_arriba',
+					:ruta_id => ruta_predefinida.id.to_s %></td>
+				<td align='center' title='Abajo'><%= button_to '\\/', :action => 'mueve_abajo',
+					:ruta_id => ruta_predefinida.id.to_s %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= link_to 'Tipos de expedientes', tipos_de_expedientes_path %>
+	</p>	
+</div>

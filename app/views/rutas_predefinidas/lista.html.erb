@@ -1,0 +1,27 @@
+<div id='main' >
+	<h1>Rutas predefinidas</h1>
+	<p>
+		<%= will_paginate @rutas_predefinidas, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th colspan='2'>Tipo de expediente</th>
+			<th>Paso</th>
+			<th colspan='2'>Instancia</th>
+			<th>Dias plazo</th>
+		</tr>
+		<% @rutas_predefinidas.each do |ruta_predefinida| %>
+			<tr>
+				<td><%=h ruta_predefinida.tipo_de_expediente.posicion %></td>
+				<td><%=h ruta_predefinida.tipo_de_expediente.nombre %></td>
+				<td align='center'><%=h ruta_predefinida.paso %></td>
+				<td><%=h ruta_predefinida.instancia_id %></td>
+				<td><%=h ruta_predefinida.instancia.nombre %></td>
+				<td align='center'><%=h ruta_predefinida.dias_plazo %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @rutas_predefinidas, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

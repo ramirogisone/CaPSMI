@@ -1,0 +1,47 @@
+<div id='main' >
+	<h1>Comprobante de compra: <%=h "\"#{@comprobante_de_compra.tipo} - #{@comprobante_de_compra.numero} - #{@comprobante_de_compra.fecha}\"" %></h1>
+	<h2>Líneas</h2>
+	<p>
+		<%= link_to 'Nueva línea', new_comprobante_de_compra_cuenta_de_proveedor_path %>
+	</p>
+    <table>
+        <tr>
+			<th colspan='2'>Proveedor</th>
+			<th colspan='4'>Valor</th>
+			<th colspan='3'>Movimiento</th>
+			<th>Importe</th>
+			<th colspan='4'>Aplicación</th>
+			<th>Borrar</th>
+		</tr>
+		<% @cuentas_de_proveedores.each do |cuenta_de_proveedor| %>
+			<tr>
+				<td align='right'><%=h cuenta_de_proveedor.proveedor_id %></td>
+				<td><%=link_to cuenta_de_proveedor.proveedor.nombre,
+					edit_comprobante_de_compra_cuenta_de_proveedor_path(@comprobante_de_compra, cuenta_de_proveedor) %></td>
+
+				<td><%=h cuenta_de_proveedor.fecha_valor %></td>
+				<td><%=h cuenta_de_proveedor.clase_valor %></td>
+				<td align='right'><%=h cuenta_de_proveedor.lote_valor %></td>
+				<td align='right'><%=h cuenta_de_proveedor.numero_valor %></td>
+
+				<td><%=h cuenta_de_proveedor.detalle %></td>
+				<td><%=h cuenta_de_proveedor.movimiento %></td>
+				<td><%=h cuenta_de_proveedor.vencimiento %></td>
+
+				<td align='right'><%=h cuenta_de_proveedor.importe %></td>
+
+				<td><%=h cuenta_de_proveedor.fecha_aplicado %></td>
+				<td><%=h cuenta_de_proveedor.tipo_aplicado %></td>
+				<td align='right'><%=h cuenta_de_proveedor.centro_aplicado %></td>
+				<td align='right'><%=h cuenta_de_proveedor.numero_aplicado %></td>
+				<td align='center'><%= button_to 'X', [@comprobante_de_compra,
+					cuenta_de_proveedor], :confirm => 'Está seguro ?',
+					:method => :delete, :disabled => permiso?('B') %></td>
+
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= link_to 'Comprobantes de compras', comprobantes_de_compras_path %>
+	</p>
+</div>

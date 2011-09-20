@@ -1,0 +1,35 @@
+<div id='main' >
+	<h1>Importaciones de vencimientos</h1>
+	<p>
+		<%= link_to 'Nueva importación', new_importacion_de_vencimiento_path %>
+	</p>
+	<p>
+		<%= will_paginate @importaciones_de_vencimientos,
+			:previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Fecha</th>
+			<th>Informe</th>
+			<th>Borrar</th>
+		</tr>
+		<% @importaciones_de_vencimientos.each do |importacion_de_vencimiento| %>
+			<tr>
+				<td><%=h importacion_de_vencimiento.id %></td>
+				<td><%= link_to importacion_de_vencimiento.fecha,
+					importacion_de_vencimiento_path(importacion_de_vencimiento) %></td>
+				<td><%= text_area_tag :informe, importacion_de_vencimiento.informe,
+					:size => '40x5', :disabled => true  %></td>
+				<td id='link' align='center'>
+					<%=button_to 'X', importacion_de_vencimiento,
+						:confirm => 'Está seguro ?', :method => :delete, :disabled => permiso?('B') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @importaciones_de_vencimientos,
+			:previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

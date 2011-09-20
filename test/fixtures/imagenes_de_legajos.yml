@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  legajo: 
+  tipo: MyString
+  nombre: MyString
+
+two:
+  legajo: 
+  tipo: MyString
+  nombre: MyString

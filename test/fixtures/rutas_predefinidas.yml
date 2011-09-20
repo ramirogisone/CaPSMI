@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tipo_de_expediente: 
+  instancia: 
+  paso: 1
+  dias_plazo: 1
+
+two:
+  tipo_de_expediente: 
+  instancia: 
+  paso: 1
+  dias_plazo: 1

@@ -1,0 +1,43 @@
+<div id='main' >
+    <h1>Vencimientos</h1>
+    <p>
+        <%= will_paginate @vencimientos, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+    </p>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th colspan='2'>Importacion</th>
+            <th>Afiliado</th>
+            <th>Tipo</th>
+            <th>Vencimiento</th>
+            <th>Comprobante</th>
+            <th>Detalle</th>
+            <th>Importe</th>
+            <th>Borrar</th>
+        </tr>
+        <% @vencimientos.each do |vencimiento| %>
+            <tr>
+                <td><%=h vencimiento.id %></td>
+                <td><%=h vencimiento.importacion_de_vencimiento_id %></td>
+                <td><%=h vencimiento.importacion_de_vencimiento.fecha %></td>
+                <td><%=h vencimiento.afiliado_id %> <%=h link_to vencimiento.nombre_afiliado,
+                    edit_vencimiento_path(vencimiento) %></td>
+                <td><%=h vencimiento.tipo %></td>
+                <td><%=h vencimiento.vencimiento %></td>
+                <td><%=h vencimiento.tipo_comprobante %>
+                    <%=h vencimiento.centro_comprobante %>
+                    <%=h vencimiento.numero_comprobante.round %>
+                    <%=h vencimiento.fecha_comprobante %></td>
+                <td><%=h vencimiento.detalle %></td>
+                <td align='right'><%=h ('%.2f' % vencimiento.importe) %></td>
+                <td id='link' align='center'>
+                   <%=button_to 'X', vencimiento, :confirm => 'Esta seguro ?',
+					:method => :delete, :disabled => permiso?('B') %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+    <p>
+        <%= will_paginate @vencimientos, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+    </p>
+</div>

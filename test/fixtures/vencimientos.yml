@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  afiliado: 
+  tipo_comprobante: MyString
+  centro_comprobante: 1
+  numero_comprobante: 1.5
+  fecha_comprobante: 2011-05-14
+  vencimiento: 2011-05-14
+  detalle: MyString
+  importe: 1.5
+
+two:
+  afiliado: 
+  tipo_comprobante: MyString
+  centro_comprobante: 1
+  numero_comprobante: 1.5
+  fecha_comprobante: 2011-05-14
+  vencimiento: 2011-05-14
+  detalle: MyString
+  importe: 1.5

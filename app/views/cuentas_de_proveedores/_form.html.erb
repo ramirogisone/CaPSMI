@@ -1,0 +1,70 @@
+<h1>Comprobante de compra: <%=h "\"#{@comprobante_de_compra.tipo} - #{@comprobante_de_compra.numero} - #{@comprobante_de_compra.fecha}\"" %></h1>
+<h2><%=h titulo %></h2>
+<% form_for([@comprobante_de_compra, @cuenta_de_proveedor]) do |f| %>
+	<%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :proveedor_id %></th>
+			<td>
+				<%= f.select :proveedor_id, 
+					@proveedores.collect {|p| [p.nombre, p.id]}, 
+					{:include_blank => 'Elija un proveedor'}, {:disabled => boton == 'Show'} %>
+			</td>
+		</tr>
+			<tr>
+				<th><%= f.label :movimiento %></th>
+				<td><%= f.select :movimiento, ['D', 'H'], {}, {:disabled => boton == 'Show'} %></td>
+			</tr>
+		<tr>
+			<th><%= f.label :detalle %></th>
+			<td><%= f.text_field :detalle, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :importe %></th>
+			<td><%= f.text_field :importe, :size => 12, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :vencimiento %></th>
+			<td><%= f.text_field :vencimiento, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :valor %></th>
+			<td>
+				Clase: <%= f.text_field :clase_valor, :size => 4, :disabled => boton == 'Show'  %>
+				Lote: <%= f.text_field :lote_valor, :size => 4, :disabled => boton == 'Show'  %>
+				Nº: <%= f.text_field :numero_valor, :size => 8, :disabled => boton == 'Show'  %>
+				Fecha: <%= f.text_field :fecha_valor, :size => 10, :disabled => boton == 'Show'  %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label 'Aplicación' %></th>
+			<td>
+				Tipo: <%= f.text_field :tipo_aplicado, :size => 4, :disabled => boton == 'Show'  %>
+				Centro: <%= f.text_field :centro_aplicado, :size => 4, :disabled => boton == 'Show'  %>
+				Nº: <%= f.text_field :numero_aplicado, :size => 8, :disabled => boton == 'Show'  %>
+				Fecha: <%= f.text_field :fecha_aplicado, :size => 10, :disabled => boton == 'Show'  %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label 'Auditoría' %></th>
+			<td>
+				Fecha: <%= f.text_field :fec_grab, :size => 10, :disabled => true %>
+				Hora: <%= f.text_field :hor_grab, :size => 8, :disabled => true %>
+				Wks.: <%= f.text_field :wks_grab, :size => 8, :disabled => true %>
+				Op.: <%= f.text_field :tip_grab, :size => 4, :disabled => true %>
+				Usr.: <%= f.text_field :usr_grab, :size => 4, :disabled => true %>
+				Rec.: <%= f.text_field :rec_grab, :size => 4, :disabled => true %>
+			</td>
+		</tr>
+	</table>
+	<p>
+		<% if boton == 'Show' %>
+			<%= link_to 'Editar', edit_comprobante_de_compra_cuenta_de_proveedor_path(@comprobante_de_compra, @cuenta_de_proveedor) %> |
+			<%= link_to 'Listar', comprobante_de_compra_cuentas_de_proveedores_path %> |
+			<%= link_to 'Nueva línea', new_comprobante_de_compra_cuenta_de_proveedor_path %>
+		<% else %>
+			<%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			<%= link_to 'Cancelar', comprobante_de_compra_cuentas_de_proveedores_path(@comprobante_de_compra) %>
+		<% end %>
+	</p>
+<% end %>

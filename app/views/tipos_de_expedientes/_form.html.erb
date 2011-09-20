@@ -1,0 +1,26 @@
+<% form_for(@tipo_de_expediente, :url => '/tipos_de_expedientes') do |f| %>
+	<%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :posicion %></th>
+			<td><%= f.text_field :posicion, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :nombre %></th>
+			<td><%= f.text_field :nombre, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :observacion %></th >
+			<td><%= f.text_area :observacion, :size => '40x4', :disabled => boton == 'Show' %></td>
+		</tr>
+	</table>
+	 <p>
+		<% if boton == 'Show' %>
+			<%= link_to 'Editar', edit_tipo_de_expediente_path(@tipo_de_expediente) %> |
+			<%= link_to 'Listar', tipos_de_expedientes_path %>
+		<% else %>
+			<%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			<%= link_to 'Cancelar', tipos_de_expedientes_path %>
+		<% end %>
+	</p>
+<% end %>

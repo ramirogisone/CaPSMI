@@ -1,0 +1,40 @@
+<div id='main' >
+	<h1>Proveedores</h1>
+	<p>
+		<%= link_to 'Nuevo proveedor', new_proveedor_path %> |
+		<%= link_to 'Listado completo', :action => 'index_full' %>
+	</p>
+	<p>
+		<%= will_paginate @proveedores, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Código agrupación</th>
+			<th>Domicilio</th>
+			<th>Teléfonos</th>
+			<th>Régimen Iva</th>
+			<th>Cuit</th>
+			<th>Borrar</th>
+		</tr>
+		<% @proveedores.each do |proveedor| %>
+			<tr>
+				<td><%=h proveedor.id %></td>
+				<td><%=link_to proveedor.nombre, edit_proveedor_path(proveedor) %></td>
+				<td><%=h proveedor.codigo_agrupacion %></td>
+				<td><%=h proveedor.domicilio %></td>
+				<td><%=h proveedor.telefonos %></td>
+				<td><%=h proveedor.regimen_iva %></td>
+				<td><%=h proveedor.cuit.round %></td>
+				<td id='link' align='center'>
+					<%=button_to 'X', proveedor, :confirm => 'Esta seguro ?',
+						:method => :delete, :disabled => permiso?('B') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+  <p>
+	<%= will_paginate @proveedores, :previous_label => 'Previo', :next_label => 'Siguiente' %>
+  </p>
+</div>

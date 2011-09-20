@@ -1,0 +1,36 @@
+<div id='main'>
+	<h1>Listar afiliados:</h1>
+	<%= aviso %>
+	<% form_for @form, :url => 'listar', :html => { :method => :get } do |f| %>
+		<table>
+			<tr>
+				<th><%= f.label 'Profesión' %></th>
+				<td>
+					<%= f.check_box :profesion_medicos %> <%= f.label 'Médicos' %>
+					<%= f.check_box :profesion_ingenieros %> <%= f.label 'Ingenieros' %>
+				</td>
+			</tr>
+			<tr>
+				<th><%= f.label 'Condición' %></th>
+				<td>
+					<%= f.check_box :condicion_activos %> <%= f.label 'Activos' %>
+					<%= f.check_box :condicion_inactivos %> <%= f.label 'Inactivos' %>
+				</td>
+			</tr>
+			<tr>
+				<th><%= f.label 'Datos a mostrar' %></th>
+				<td>
+					<%= f.check_box :datos_personales %> <%= f.label 'Personales' %>
+					<%= f.check_box :datos_profesionales %> <%= f.label 'Profesionales' %>
+					<%= f.check_box :datos_afiliacion %> <%= f.label 'Afiliación' %>
+					<%= f.check_box :datos_domicilio %> <%= f.label 'Domicilio particular' %>
+					<%= f.check_box :datos_direccion %> <%= f.label 'Dirección profesional' %>
+					<%= f.check_box :datos_auditoria %> <%= f.label 'Auditoría informática' %>
+				</td>
+			</tr>
+		</table>
+		<p>
+			<%= f.submit 'Listar' %> | <%= link_to 'Cancelar', :action => 'index' %><br />
+		</p>
+	<% end %>
+</div>

@@ -1,0 +1,30 @@
+<div id='main' >
+	<h1>Opción: <%= "\"#{@link.posicion} - #{@link.nombre}\"" %> </h1>
+	<h2>Usuarios asociados</h2>
+	<p>
+		<%= link_to 'Agregar usuario', new_admin_link_link_user_path %>
+	</p>
+	<table>
+		<tr>
+			<th colspan='2'>Usuario</th>
+			<th>Alta</th>
+			<th>Baja</th>
+			<th>Modificacion</th>
+			<th>Borrar</th>
+		</tr>
+		<% @relaciones.each do |link_user| %>
+			<tr>
+				<td align='right'><%=h link_user.user_id %></td>
+				<td><%=link_to link_user.user.login, edit_admin_link_link_user_path(@link, link_user) %></td>
+				<td align='center'><%=h link_user.alta ? 'Si' : '-' %></td>
+				<td align='center'><%=h link_user.baja ? 'Si' : '-' %></td>
+				<td align='center'><%=h link_user.modificacion ? 'Si' : '-' %></td>
+				<td align='center'><%=button_to 'X', [:admin, @link, link_user],
+					:confirm => 'Esta seguro?', :method => :delete, :disabled => permiso?('B') %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= link_to 'Links', admin_links_path %>	
+	</p>
+</div>

@@ -1,0 +1,78 @@
+<% form_for(@legajo) do |f| %>
+  <%= f.error_messages %>
+  <table>
+    <tr>
+      <th><%= f.label :legajo %></th>
+      <td><%= f.text_field :legajo, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :apellido %></th>
+      <td><%= f.text_field :apellido, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :nombres %></th>
+      <td><%= f.text_field :nombres, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :nacimiento %></th>
+      <td><%= f.text_field :nacimiento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :tipo_documento %></th>
+      <td><%= f.text_field :tipo_documento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :documento %></th>
+      <td><%= f.text_field :documento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :cuil %></th>
+      <td><%= f.text_field :cuil, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :estado_civil %></th>
+      <td><%= f.text_field :estado_civil, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :domicilio %></th>
+      <td><%= f.text_field :domicilio, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :ciudad %></th>
+      <td><%= f.text_field :ciudad, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :codigo_postal %></th>
+      <td><%= f.text_field :codigo_postal, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :telefonos %></th>
+      <td><%= f.text_field :telefonos, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :ingreso %></th>
+      <td><%= f.text_field :ingreso, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :categoria %></th>
+      <td><%= f.text_field :categoria, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :egreso %></th>
+      <td><%= f.text_field :egreso, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :id %></th>
+      <td><%= f.text_field :id, :disabled => true %></td>
+    </tr>
+  </table>
+  <p>
+    <% if boton == 'Show' %>
+      <%= link_to 'Editar', edit_legajo_path(@legajo) %> |
+      <%= link_to 'Listar', legajos_path %>
+    <% else %>
+      <%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+	  <%= link_to 'Cancelar', legajos_path %>
+    <% end %>
+  </p>
+<% end %>

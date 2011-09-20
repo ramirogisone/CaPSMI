@@ -1,0 +1,22 @@
+<% form_for(@instancia) do |f| %>
+	<%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :nombre %></th>
+			<td><%= f.text_field :nombre, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :observaciones %></th>
+			<td><%= f.text_area :observaciones, :size => '40x4', :disabled => boton == 'Show'  %></td>
+		</tr>
+	</table>
+	<p>
+		<% if boton == 'Show' %>
+		  <%= link_to 'Editar', edit_instancia_path(@legajo) %> |
+		  <%= link_to 'Listar', instancias_path %>
+		<% else %>
+		  <%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+		  <%= link_to 'Cancelar', instancias_path %>
+		<% end %>
+	</p>
+<% end %>

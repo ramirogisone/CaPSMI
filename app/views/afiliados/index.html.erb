@@ -1,0 +1,36 @@
+<div id='main' >
+	<h1>Afiliados</h1>
+	<p>
+		<%= will_paginate @afiliados, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Código agrupación</th>
+			<th>Título</th>
+			<th>Número colegio profesional</th>
+			<th>Documento</th>
+			<th>Nacimiento</th>
+			<th>Borrar</th>
+		</tr>
+		<% @afiliados.each do |afiliado| %>
+			<tr>
+				<td><%=h afiliado.id %></td>
+				<td><%=link_to afiliado.nombre, edit_afiliado_path(afiliado) %></td>
+				<td><%=h afiliado.codigo_agrupacion %></td>
+				<td><%=h afiliado.titulo %></td>
+				<td><%=h afiliado.numero_colegio_profesional %></td>
+				<td align='right'><%=h afiliado.documento.round %></td>
+				<td><%=h afiliado.nacimiento %></td>
+				<td id='link' align='center'>
+					<%=button_to 'X', afiliado, :confirm => 'Esta seguro ?',
+						:method => :delete, :disabled => permiso?('B') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @afiliados, :previous_label => 'Previo', :next_label => 'Siguiente' %>
+	</p>
+</div>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		<title>CAPSMI <%= controller.action_name %></title>
+		<%= stylesheet_link_tag 'aplication' %>
+		<%= javascript_include_tag :all %>
+	</head>
+	<body onload="setFocusDefault()">
+
+		<div id='contenedor'>
+			<!--..........................................................-->
+			<!--...................... B A N N E R  ......................-->
+			<!--..........................................................-->
+			<div id='banner'>
+				<br /><br /><br />
+				<%= link_to '+ Inicio', 'http://www.cajajubmedingtuc.org.ar/' %>
+				<%= link_to '+ Novedades',
+					'http://www.cajajubmedingtuc.org.ar/nivel2.php?id_nivel1=26&titulo_seccion=Novedades' %>
+				<%= link_to '+ Contacto',
+					'http://www.cajajubmedingtuc.org.ar/nivel2.php?id_nivel1=15&titulo_seccion=Mensajes%20y%20sugerencias' %>
+			</div>
+			<div id='separador'></div>
+			<!--..........................................................-->
+			<!--........................ M E N U  ........................-->
+			<!--..........................................................-->
+			<div id='menu'>
+				<% @menu ? @menu.each do |opcion|
+					url = {}
+					url[:controller] = '/'+opcion.controlador unless opcion.controlador.empty?
+					url[:action] = opcion.accion unless opcion.accion.empty?
+					url[:opc_permiso] = opcion.id
+					html = {}
+					html[:method] = :delete if opcion.accion == 'destroy'
+					html[:class] = 'titulo' if opcion.posicion.length == 2 %>
+					<%= link_to opcion.nombre, url, html %>
+				<% end : nil %>
+				<br/><br/>
+				<% if current_user %>
+					<p class='titulo'>
+						<%= current_user.login %> (<%= current_user.id %>)
+						<br/><br/><br/><br/>
+						<%= current_user.nombre %>
+					</p>
+				<% end %>
+			</div>
+
+			<div id='marco'>
+				<%= yield %>
+			</div>
+
+			<div id='pie'>
+				(C) 2011 Forum Development Group - 
+				Todos los derechos reservados - 
+				Tucumán - Argentina
+			</div>
+		</div>
+
+	</body>
+</html>

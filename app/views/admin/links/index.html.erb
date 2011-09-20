@@ -1,0 +1,33 @@
+<div id='main' >
+	<h1>Links</h1>
+	<p>
+		<%= link_to 'Nuevo link', new_admin_link_path %>
+	</p>
+	<table>
+		<tr>
+			<th>Posicion</th>
+			<th colspan='2'>Nombre</th>
+			<th>Controlador</th>
+			<th>Accion</th>
+			<th>Estado</th>
+			<th>Usuarios</th>
+			<th>Borrar</th>
+		</tr>
+		<% @links.each do |link| %>
+			<tr>
+				<td><%=h link.posicion %></td>
+				<td align='right'><%=h link.id %></td>
+				<td><%= link_to link.nombre, edit_admin_link_path(link) %></td>
+				<td><%=h link.controlador %></td>
+				<td><%=h link.accion %></td>
+				<td><%=h link.estado %></td>
+				<td align='center'><%=button_to ' => ',
+					admin_link_links_users_path(link),:method => :get %></td>
+				<td id='link' align='center'>
+					<%=button_to 'X', [:admin, link], :confirm => 'Esta seguro ?',
+						:method => :delete, :disabled => permiso?('B') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</div>

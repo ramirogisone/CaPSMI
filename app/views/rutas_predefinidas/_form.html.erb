@@ -1,0 +1,38 @@
+<h1>Tipo de expediente: <%=h "\"#{@tipo_de_expediente.posicion} - #{@tipo_de_expediente.nombre}\"" %></h1>
+<h2><%=h titulo %></h2>
+<% form_for([@tipo_de_expediente, @ruta_predefinida], :html => { :multipart => true }) do |f| %>
+	<%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :dias_plazo %></th>
+			<td><%= f.text_field :dias_plazo, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :instancia %></th>
+			<td>
+				<% if boton == 'Show' %>
+					<%= f.text_field :nombre_instancia, :disabled => true  %>
+				<% else %>
+					<%= f.select :instancia_id, 
+					@instancias.collect {|i| [i.nombre, i.id]}, 
+					:include_blank => 'Elija una instancia'  %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :paso %></th>
+			<td><%= f.text_field :paso, :disabled => true %></td>
+			<%= f.hidden_field :paso %>
+		</tr>
+	</table>
+	<p>
+		<% if boton == 'Show' %>
+			<%= link_to 'Editar', edit_tipo_de_expediente_ruta_predefinida_path(@legajo,@imagen_de_legajo) %> |
+			<%= link_to 'Listar', tipo_de_expediente_rutas_predefinidas_path %> |
+			<%= link_to 'Nuevo', new_tipo_de_expediente_ruta_predefinida_path %>
+		<% else %>
+			<%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			<%= link_to 'Cancelar', tipo_de_expediente_rutas_predefinidas_path %>
+		<% end %>
+	</p>
+<% end %>

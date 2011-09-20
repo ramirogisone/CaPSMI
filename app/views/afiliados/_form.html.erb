@@ -1,0 +1,186 @@
+<% form_for(@afiliado) do |f| %>
+  <%= f.error_messages %>
+  <table>
+    <tr>
+      <th><%= f.label :id %></th>
+      <td><%= f.text_field :id, :disabled => true %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :nombre %></th>
+      <td><%= f.text_field :nombre, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :nacimiento %></th>
+      <td><%= f.text_field :nacimiento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :fallecimiento %></th>
+      <td><%= f.text_field :fallecimiento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :lugar_nacimiento %></th>
+      <td><%= f.text_field :lugar_nacimiento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :tipo_documento %></th>
+      <td><%= f.text_field :tipo_documento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :documento %></th>
+      <td><%= f.text_field :documento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :estado_civil %></th>
+      <td><%= f.text_field :estado_civil, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :titulo %></th>
+      <td><%= f.text_field :titulo, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :universidad %></th>
+      <td><%= f.text_field :universidad, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :fecha_titulo %></th>
+      <td><%= f.text_field :fecha_titulo, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :matricula %></th>
+      <td><%= f.text_field :matricula, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :fecha_matricula %></th>
+      <td><%= f.text_field :fecha_matricula, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :colegio_profesional %></th>
+      <td><%= f.text_field :colegio_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :numero_colegio_profesional %></th>
+      <td><%= f.text_field :numero_colegio_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :cuit %></th>
+      <td><%= f.text_field :cuit, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :inicio_devengamiento %></th>
+      <td><%= f.text_field :inicio_devengamiento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :final_devengamiento %></th>
+      <td><%= f.text_field :final_devengamiento, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :inicio_afiliacion %></th>
+      <td><%= f.text_field :inicio_afiliacion, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :codigo_agrupacion %></th>
+      <td><%= f.text_field :codigo_agrupacion, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :sexo %></th>
+      <td><%= f.text_field :sexo, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :domicilio_particular %></th>
+      <td><%= f.text_field :domicilio_particular, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :ciudad_particular %></th>
+      <td><%= f.text_field :ciudad_particular, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :codigo_postal_particular %></th>
+      <td><%= f.text_field :codigo_postal_particular, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :provincia_particular %></th>
+      <td><%= f.text_field :provincia_particular, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :telefonos_particular %></th>
+      <td><%= f.text_field :telefonos_particular, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :fax_particular %></th>
+      <td><%= f.text_field :fax_particular, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :e_mail_particular %></th>
+      <td><%= f.text_field :e_mail_particular, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :domicilio_profesional %></th>
+      <td><%= f.text_field :domicilio_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :ciudad_profesional %></th>
+      <td><%= f.text_field :ciudad_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :codigo_postal_profesional %></th>
+      <td><%= f.text_field :codigo_postal_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :provincia_profesional %></th>
+      <td><%= f.text_field :provincia_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :telefonos_profesional %></th>
+      <td><%= f.text_field :telefonos_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :fax_profesional %></th>
+      <td><%= f.text_field :fax_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :e_mail_profesional %></th>
+      <td><%= f.text_field :e_mail_profesional, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :regimen_iva %></th>
+      <td><%= f.text_field :regimen_iva, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :area_geografica %></th>
+      <td><%= f.text_field :area_geografica, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :observaciones %></th>
+      <td><%= f.text_area :observaciones, :size => 'auto', :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :fec_grab %></th>
+      <td><%= f.text_field :fec_grab, :disabled => true %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :hor_grab %></th>
+      <td><%= f.text_field :hor_grab, :disabled => true %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :usr_grab %></th>
+      <td><%= f.text_field :usr_grab, :disabled => true %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :wks_grab %></th>
+      <td><%= f.text_field :wks_grab, :disabled => true%></td>
+    </tr>
+    <tr>
+      <th><%= f.label :tip_grab %></th>
+      <td><%= f.text_field :tip_grab, :disabled => true %></td>
+    </tr>
+  </table>
+  <p>
+    <% if boton == 'Show' %>
+      <%= link_to 'Editar', edit_afiliado_path(@afiliado) %> |
+      <%= link_to 'Listar', afiliados_path %>
+    <% else %>
+      <%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+	  <%= link_to 'Cancelar', afiliados_path %>
+    <% end %>
+  </p>
+<% end %>

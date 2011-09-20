@@ -1,0 +1,52 @@
+<% form_for(@comprobante_de_mesa_de_entrada) do |f| %>
+  <%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :id %></th>
+			<td><%= f.text_field :id, :size => 8, :disabled => true  %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :fecha %></th>
+			<td><%= f.text_field :fecha, :size => 8, :disabled => boton == 'Show'  %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :tipo %></th>
+			<td>
+				<% if boton == 'Show' %>
+					<%= f.text_field :tipo, :disabled => true %>
+				<% else %>
+					<%= f.select :tipo, ['IME', 'PAS', 'ARCH'], 
+						:include_blank => 'Elija un tipo' %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :numero %></td>
+			<td><%= f.text_field :numero, :disabled => boton == 'Show'  %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :observaciones %><br />
+			<td><%= f.text_area :observaciones, :size => '40x4', :disabled => boton == 'Show'  %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :usuario %></th>
+			<td>
+				<%= f.select :user_id,
+					@usuarios.collect {|u| ["#{u.login} - #{u.nombre}", u.id]}, 
+					{}, {:disabled => true} %>
+				<%= f.hidden_field :user_id %>
+			</td>
+		</tr>
+	</table>
+	<p>
+		<% if boton == 'Show' %>
+		<%= link_to 'Editar', edit_comprobante_de_mesa_de_entrada_path(@legajo) %> |
+		<%= link_to 'Líneas',
+			comprobante_de_mesa_de_entrada_movimientos_de_mesa_de_entrada_path(@comprobante_de_mesa_de_entrada) %> |
+		<%= link_to 'Listar', comprobantes_de_mesa_de_entrada_path %>
+		<% else %>
+		  <%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+		  <%= link_to 'Cancelar', comprobantes_de_mesa_de_entrada_path %>
+		<% end %>
+	</p>
+<% end %>	

@@ -1,0 +1,96 @@
+<div id='formulario'>
+	<% form_for(@comprobante_de_compra) do |f| %>
+		<%= f.error_messages %>
+		<table>
+			<tr>
+				<th><%= f.label :proveedor %></th>
+				<td>
+					<%= f.select :proveedor_id, @proveedores.collect {|p| [p.nombre, p.id]},
+						{:include_blank => 'Elija proveedor'}, {:disabled => boton != 'Crear'} %>
+					<%= observe_field :comprobante_de_compra_proveedor_id,
+						:url => {:action => 'get_proveedor'},
+						:frequency => 0.5,
+						:update => 'formulario',
+						:with => :proveedor %>
+				</td>
+			</tr>
+			<tr>
+				<th><%= f.label :fecha %></th>
+				<td><%= f.text_field :fecha, :size => 10, :disabled => boton == 'Show' %></td>
+			</tr>
+			<tr>
+				<th><%= f.label 'Identificación' %></th>
+				<td>
+					Tipo <%= f.select :tipo, ['AOP', 'FAC', 'FAP', 'HAB', 'OPA', 'PPE', 'REC'], 
+						{:include_blank => 'Elija un tipo'}, {:disabled => boton == 'Show'} %>
+					Centro: <%= f.text_field :centro, :size => 4, :disabled => boton == 'Show'  %>
+					Número: <%= f.text_field :numero, :size => 8, :disabled => boton == 'Show'  %>
+				</td>
+			</tr>
+			<tr>
+				<th><%= f.label :domicilio %></th>
+				<td><%= f.text_field :domicilio, :size => 40, :disabled => boton == 'Show' %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :ciudad %></th>
+				<td><%= f.text_field :ciudad, :disabled => boton == 'Show' %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :codigo_postal %></th>
+				<td><%= f.text_field :codigo_postal, :disabled => boton == 'Show' %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :provincia %></th>
+				<td><%= f.text_field :provincia, :disabled => boton == 'Show' %></td>
+			</tr>
+			<tr>
+				<th><%= f.label 'Teléfonos' %></th>
+				<td><%= f.text_field :telefonos, :disabled => boton == 'Show' %></td>
+			</tr>
+			<tr>
+				<th><%= f.label 'Régimen Iva' %></th>
+				<td>
+					<%= f.select :regimen_iva, @lista_de_regimenes,
+						{:include_blank => 'Elija un régimen'}, {:disabled => boton == 'Show'} %>
+				</td>
+			</tr>
+			<tr>
+				<th><%= f.label :total %></th>
+				<td><%= f.text_field :total, :disabled => boton == 'Show' %></td>
+			</tr>
+			<tr>
+				<th><%= f.label 'Usuario' %></th>
+				<td>
+					<%= f.select :user_id,
+						@usuarios.collect {|u| ["#{u.login} - #{u.nombre}", u.id]}, 
+						{}, {:disabled => true} %>
+					<%= f.hidden_field :user_id %>
+				</td>
+			</tr>
+			<tr>
+				<th><%= f.label 'Auditoría' %></th>
+				<td>
+					Fecha <%= f.text_field :fec_grab, :size => 8, :disabled => true %>
+					Hora <%= f.text_field :hor_grab, :size => 8, :disabled => true %>
+					Usr <%= f.text_field :usr_grab, :size => 4, :disabled => true %>
+					Wks <%= f.text_field :wks_grab, :size => 10, :disabled => true%>
+					Op <%= f.text_field :tip_grab, :size => 1, :disabled => true %>
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<th><%= f.label :id %></th>
+				<td><%= f.text_field :id, :size => 5, :disabled => true  %></td>
+			</tr>
+		</table>
+		<p>
+			<% if boton == 'Show' %>
+			  <%= link_to 'Editar', edit_comprobante_de_compra_path(@comprobante_de_compra) %> |
+			  <%= link_to 'Listar', comprobantes_de_compras_path %>
+			<% else %>
+			  <%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			  <%= link_to 'Cancelar', comprobantes_de_compras_path %>
+			<% end %>
+		</p>
+	<% end %>
+</div>

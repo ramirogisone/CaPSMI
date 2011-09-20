@@ -1,0 +1,93 @@
+<% form_for(@proveedor) do |f| %>
+	<%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :nombre %></th>
+			<td><%= f.text_field :nombre, :size => 50, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :codigo_agrupacion %></th>
+			<td><%= f.text_field :codigo_agrupacion, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :domicilio %></th>
+			<td><%= f.text_field :domicilio, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :ciudad %></th>
+			<td><%= f.text_field :ciudad, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :codigo_postal %></th>
+			<td><%= f.text_field :codigo_postal, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :provincia %></th>
+			<td><%= f.text_field :provincia, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :telefonos %></th>
+			<td><%= f.text_field :telefonos, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :fax %></th>
+			<td><%= f.text_field :fax, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :regimen_iva %></th>
+			<td>
+				<%= f.select :regimen_iva, @lista_de_regimenes,
+					{:include_blank => 'Elija un régimen'}, {:disabled => boton == 'Show'} %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :cuit %></th>
+			<td><%= f.text_field :cuit, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :e_mail %></th>
+			<td><%= f.text_field :e_mail, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :area_geografica %></th>
+			<td><%= f.text_field :area_geografica, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :fec_grab %></th>
+			<td><%= f.text_field :fec_grab, :disabled => true %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :hor_grab %></th>
+			<td><%= f.text_field :hor_grab, :disabled => true %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :usr_grab %></th>
+			<td><%= f.text_field :usr_grab, :disabled => true %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :wks_grab %></th>
+			<td><%= f.text_field :wks_grab, :disabled => true%></td>
+		</tr>
+		<tr>
+			<th><%= f.label :tip_grab %></th>
+			<td><%= f.text_field :tip_grab, :disabled => true %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :observaciones %></th>
+			<td><%= f.text_area :observaciones, :size => '40x2', :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :id %></th>
+			<td><%= f.text_field :id, :disabled => true %></td>
+		</tr>
+	</table>
+	<p>
+		<% if boton == 'Show' %>
+			<%= link_to 'Editar', edit_proveedor_path(@proveedor) %> |
+			<%= link_to 'Listar', proveedores_path %>
+		<% else %>
+			<%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			<%= link_to 'Cancelar', proveedores_path %>
+		<% end %>
+	</p>
+<% end %>

@@ -1,0 +1,48 @@
+<div id='main' >
+	<h1>Comprobantes de mesa de entrada</h1>
+	<p>
+		<%= link_to 'Nuevo comprobante', new_comprobante_de_mesa_de_entrada_path %>
+	</p>
+	<p>
+		<%= will_paginate @instancias, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Fecha</th>
+			<th>Tipo</th>
+			<th>Numero</th>
+			<th>User</th>
+			<th>Observaciones</th>
+			<th>Líneas</th>
+			<th>Borrar</th>
+		</tr>
+
+		<% @comprobantes_de_mesa_de_entrada.each do |comprobante_de_mesa_de_entrada| %>
+			<tr>
+				<td align='right'><%=h comprobante_de_mesa_de_entrada.id %></td>
+				<td><%=link_to comprobante_de_mesa_de_entrada.fecha,
+						edit_comprobante_de_mesa_de_entrada_path(comprobante_de_mesa_de_entrada) %></td>
+				<td><%=h comprobante_de_mesa_de_entrada.tipo %></td>
+				<td><%=h comprobante_de_mesa_de_entrada.numero %></td>
+				<td><%=h comprobante_de_mesa_de_entrada.nombre_usuario %></td>
+				<td><%=h comprobante_de_mesa_de_entrada.observaciones %></td>
+				<td><%=button_to ' => ',
+					comprobante_de_mesa_de_entrada_movimientos_de_mesa_de_entrada_path(comprobante_de_mesa_de_entrada),
+					:method => :get %>
+				</td>
+				<td align='center'>
+					<%=button_to 'X', comprobante_de_mesa_de_entrada,
+						:confirm => 'Esta seguro ?', :method => :delete, :disabled => permiso?('B') %>
+				</td>
+				<td align='center'>
+					<%= link_to image_tag('icono-impresora.gif', :size => '30x30', :title => 'Imprimir'),
+						{:action => :imprimir, :id => comprobante_de_mesa_de_entrada}, :target => '_blank' %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @instancias, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

@@ -1,0 +1,38 @@
+<div id='main' >
+	<h1>Movimientos de mesa de entrada</h1>
+	<p>
+		<%= will_paginate @movimientos_de_mesa_de_entrada, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th colspan='3'>Comprobante</th>
+			<th colspan='2'>Expediente</th>
+			<th colspan='2'>Instancia origen</th>
+			<th colspan='2'>Instancia destino</th>
+			<th>Tipo</th>
+			<th>Dias plazo</th>
+			<th>Informe</th>
+		</tr>
+		<% @movimientos_de_mesa_de_entrada.each do |movimiento| %>
+			<tr>
+				<td align='right'><%=h movimiento.id %></td>
+				<td><%=h movimiento.comprobante_de_mesa_de_entrada.fecha %></td>
+				<td><%=h movimiento.comprobante_de_mesa_de_entrada.tipo %></td>
+				<td><%=h movimiento.comprobante_de_mesa_de_entrada.numero %></td>
+				<td><%=h movimiento.expediente_id %></td>
+				<td><%=h movimiento.expediente.nombre %></td>
+				<td><%=h movimiento.instancia_origen_id %></td>
+				<td><%=h movimiento.instancia_origen.nombre %></td>
+				<td><%=h movimiento.instancia_destino_id %></td>
+				<td><%=h movimiento.instancia_destino.nombre %></td>
+				<td><%=h movimiento.tipo %></td>
+				<td><%=h movimiento.dias_plazo %></td>
+				<td><%=h movimiento.informe %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @movimientos_de_mesa_de_entrada, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

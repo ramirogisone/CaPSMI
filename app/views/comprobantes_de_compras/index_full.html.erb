@@ -1,0 +1,53 @@
+<div id='main' >
+	<h1>Comprobantes de compras</h1>
+	<p>
+		<%= link_to 'Nuevo comprobante', new_comprobante de_compra_path %>
+	</p>
+	<table>
+		<tr>
+			<th>Fecha</th>
+			<th>Tipo</th>
+			<th>Centro</th>
+			<th>Numero</th>
+			<th>Proveedor</th>
+			<th>User</th>
+			<th>Domicilio</th>
+			<th>Ciudad</th>
+			<th>Codigo postal</th>
+			<th>Provincia</th>
+			<th>Telefonos</th>
+			<th>Regimen iva</th>
+			<th>Total</th>
+			<th>Hor grab</th>
+			<th>Usr grab</th>
+			<th>Wks grab</th>
+			<th>Tip grab</th>
+		</tr>
+		<% @comprobantes_de_compras.each do |comprobante_de_compra| %>
+			<tr>
+				<td><%=link_to comprobante_de_compra.fecha,
+						edit_comprobante_de_compra_path(comprobante_de_compra) %></td>
+				<td><%=h comprobante_de_compra.tipo %></td>
+				<td><%=h comprobante_de_compra.centro %></td>
+				<td><%=h comprobante_de_compra.numero %></td>
+				<td><%=h comprobante_de_compra.proveedor %></td>
+				<td><%=h comprobante_de_compra.user %></td>
+				<td><%=h comprobante_de_compra.proveedor.domicilio %></td>
+				<td><%=h comprobante_de_compra.proveedor.ciudad %></td>
+				<td><%=h comprobante_de_compra.proveedor.codigo_postal %></td>
+				<td><%=h comprobante_de_compra.proveedor.provincia %></td>
+				<td><%=h comprobante_de_compra.proveedor.telefonos %></td>
+				<td><%=h comprobante_de_compra.regimen_iva %></td>
+				<td><%=h comprobante_de_compra.total %></td>
+				<td><%=h comprobante_de_compra.hor_grab %></td>
+				<td><%=h comprobante_de_compra.usr_grab %></td>
+				<td><%=h comprobante_de_compra.wks_grab %></td>
+				<td><%=h comprobante_de_compra.tip_grab %></td>
+				<td align='center'>
+					<%=button_to 'X', comprobante_de_compra,
+						:confirm => 'Esta seguro?', :method => :delete, :disabled => permiso?('B') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</div >

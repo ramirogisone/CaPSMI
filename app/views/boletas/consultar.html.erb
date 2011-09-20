@@ -1,0 +1,56 @@
+<div id='main'>
+	<h1>Boleta emitida:</h1>
+	<p>
+		<h3>Afiliado:</h3>
+	</p>
+	<% form_for(@boleta) do |f| %>
+		<table>
+			<tr>
+				<th><%= f.label :nombre %></th>
+				<td><%= f.text_field :nombre_afiliado, :size => 50, :disabled => true %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :vencimiento %></th>
+				<td><%= f.text_field :vencimiento, :size => 10, :disabled => true %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :total %></th>
+				<td><%= f.text_field :total, :size => 10, :disabled => true %></td>
+			</tr>
+			<tr>
+				<th><%= f.label 'Grabación' %></th>
+				<td><%= f.text_field :created_at, :size => 50, :disabled => true %></td>
+			</tr>
+		</table>
+		<p>
+			<%= link_to 'Aceptar', boletas_path %>
+		</p>
+	<% end %>
+	<p>
+		<h3>Vencimientos:</h3>
+	</p>
+	<table>
+		<tr>
+			<th>Vencimiento</th>
+			<th>Deuda</th>
+			<th>Comprobante</th>
+			<th>detalle</th>
+			<th>Importe</th>
+		</tr>
+		<% @boleta.vencimientos.each do |vencimiento| %>
+			<tr>
+				<td><%=h vencimiento.vencimiento %></td>
+				<td><%=h vencimiento.tipo %></td>
+				<td><%=h vencimiento.tipo_comprobante %>
+					<%=h vencimiento.centro_comprobante %>
+					<%=h vencimiento.numero_comprobante.round %>
+					<%=h vencimiento.fecha_comprobante %></td>
+				<td><%=h vencimiento.detalle %></td>
+				<td align='right'><%=h ('%.2f' % vencimiento.importe) %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<td colspan='5' align='right'><%= 'Total : '+('$%.2f' % @boleta.total) %></td>
+		</tr>
+	</table>
+</div>

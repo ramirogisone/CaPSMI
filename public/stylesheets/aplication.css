@@ -1,0 +1,251 @@
+html, body {
+  background: #7A110E;
+}
+
+/****************************************************/
+/*                   CONTENEDOR !!!                 */
+/****************************************************/
+
+#contenedor {
+  position: relative;
+  top: -19px;
+  margin: 0 auto 0 auto;
+  width: 750px;
+  height: 1100px;
+  border: 3px solid #560C0B;
+
+  background: white;
+  overflow: hidden;
+}
+
+/****************************************************/
+/*                     BANNER !!!                   */
+/****************************************************/
+
+#banner {
+  width: 100%;
+  height: 100px;
+
+  background-image: url('/images/banner_caja.jpg');
+
+  line-height: 25px;
+  text-align: right;
+}
+
+#banner a {
+  margin-right: 30px;
+
+  color: black;
+
+  font-family: tahoma, verdana, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#separador {
+  height: 8px;
+  border-top: 6px solid black;
+  border-bottom: 1px solid #CECECE;
+
+  background: #EEEEEE;
+}
+
+/****************************************************/
+/*                     MENU !!!                     */
+/****************************************************/
+
+#menu {
+  position: relative;
+  float: left;
+  width: 130px;
+  height: 910px;
+  border-top: 3px solid white;
+  padding: 5px;
+  padding-top: 25px;
+  padding-left: 15px;
+
+  background: -webkit-gradient(linear, 0% 0%, 0% 10%, from(#EEEEEE), to(white));
+  color: black;
+
+  line-height: 5px;
+  font-family: arial;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+#menu a {
+  display: block;
+  width: 95%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  color: #666666;
+
+  font-family: arial;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+#menu a:hover {
+  background: #F4F4F4;
+}
+
+#menu .titulo {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  color: black;
+
+  font-weight: bold;
+  border-top: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+/****************************************************/
+/*                      MARCO !!!                   */
+/****************************************************/
+
+#marco {
+  float: left;
+  width: 580px;
+  height: 940px;
+  border-top: 3px solid white;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background: -webkit-gradient(linear, 0% 0%, 0% 10%, from(#EEEEEE), to(white));
+}
+
+/****************************************************/
+/*                      MAIN !!!                    */
+/****************************************************/
+
+#main {
+  margin: 25px;
+  margin-left: 0px;
+  margin-right: 10px;
+  width: auto;
+  max-height: 885px;
+  padding: 10px;
+  padding-left: 20px;
+  border: 1px solid #CCCCCC;
+
+  color: #666666;
+  overflow: scroll;
+
+  font-family: arial;
+  font-size: 9px;
+}
+
+#main input, select {
+  font-size: 9px;
+}
+
+#main a {
+  text-decoration: none;
+  color: #7A110E;
+}
+
+#main a:hover {
+  background: #CCCCCC;
+}
+
+#main th {
+  background: #CCCCCC;
+  padding: 5px;
+  color: #666666;
+  text-align: left;
+  font-family: tahoma, verdana, sans-serif, courier;
+}
+
+#main td {
+  background: transparent;
+  border: 1px solid #CCCCCC;
+}
+
+#main td a {
+  display: block;
+}
+
+/****************************************************/
+/*           flash-notice && flash-error            */
+/****************************************************/
+
+#flash-notice, #flash-error {
+ 	float: left;
+	width: auto;
+
+	-webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  padding: 5px 10px;
+
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#flash-notice {
+  background-color: #FFFF88;
+  color: #666666;
+}
+
+#flash-error {
+  background-color: #FF1A00;
+  color: #f4f4f4;
+}
+
+/****************************************************/
+/*              S C A F F O L D  ! ! !              */
+/****************************************************/
+
+.fieldWithErrors {
+	padding: 2px;
+	background-color: red;
+	display: table;
+}
+
+#errorExplanation {
+	width: 400px;
+	border: 2px solid red;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 5px 5px 15px;
+	font-size: 12px;
+	margin: -7px;
+	background-color: #c00;
+	color: #fff;
+}
+
+#errorExplanation p {
+	color: #333;
+	margin-bottom: 0;
+	padding: 5px;
+}
+
+#errorExplanation ul li {
+	font-size: 12px;
+	list-style: square;
+}
+
+/****************************************************/
+/*                      PIE !!!                     */
+/****************************************************/
+
+#pie {
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 50px;
+
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(black));
+
+  line-height: 35px;
+  text-align: center;
+}

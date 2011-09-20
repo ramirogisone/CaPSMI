@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  emision: 2011-06-02
+  afiliado: 
+  total: 1.5
+
+two:
+  emision: 2011-06-02
+  afiliado: 
+  total: 1.5

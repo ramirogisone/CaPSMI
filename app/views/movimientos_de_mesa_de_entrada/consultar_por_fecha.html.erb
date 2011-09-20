@@ -1,0 +1,41 @@
+<div id='main'>
+	<h1>Expedientes por fecha</h1>
+	<%= aviso %>
+	<% form_for @form, :url => 'consultar_por_fecha', :html => { :method => :get } do |f| %>
+		<table>
+			<tr>
+				<th><%= f.label :Fecha %></th>
+				<td><%= f.text_field :fecha_hasta, :size => 20 %>formato dd/mm/aaa </td>
+			</tr>
+			<tr>
+				<th><%= f.label :Vencidos %> <%= '&nbsp' * 5 %></th>
+				<td><%= f.check_box :vencidos %></td>
+			</tr>
+		</table>
+		<p>
+			<%= f.submit 'Consultar' %>
+			<%= f.submit 'Cancelar' %>
+			<%= link_to 'Imprimir', { :action => :imprimir }, :target => '_blank' if @consulta %>
+		</p>
+	<% end %>
+	<% if @consulta %>
+		<table>
+			<tr>
+				<th>Fecha</th>
+				<th colspan='2'>Identificación</th>
+				<th>Entrada</th>
+				<th>Pase</th>
+				<th>Salida</th>
+				<th>Tipo</th>
+			</tr>
+			<% @consulta.each do |linea| %>
+				<tr>
+					<td align='right'><%=h linea.fecha %></td>
+					<td><%=h linea.tipo %></td>
+					<td><%=h linea.numero %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	
+</div>

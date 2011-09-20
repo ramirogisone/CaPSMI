@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  tipo_de_expediente: 
+  observaciones: MyText
+  afiliado: 
+  fecha_de_apertura: 2011-08-10
+  fecha_de_cierre: 2011-08-10
+
+two:
+  nombre: MyString
+  tipo_de_expediente: 
+  observaciones: MyText
+  afiliado: 
+  fecha_de_apertura: 2011-08-10
+  fecha_de_cierre: 2011-08-10

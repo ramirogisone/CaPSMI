@@ -1,0 +1,74 @@
+<div id='main'>
+	<h1>Ficha de movimientos</h1>
+	<h2>Expediente:</h2>
+	<%= aviso %>
+	<% form_for @form, :url => 'consultar', :html => { :method => :get } do |f| %>
+		<table>
+			<tr>
+				<th><%= f.label :nombre_expediente %></th>
+				<td><%= f.text_field :nombre, :size => 50, :disabled => @expediente %></td>
+				<%= f.hidden_field :nombre if @expediente %>
+			</tr>
+			<tr>
+				<th><%= f.label :id_expediente %> <%= '&nbsp' * 5 %></th>
+				<td><%= f.text_field :id, :size => 5, :disabled => @expediente %></td>
+				<%= f.hidden_field :id if @expediente %>
+			</tr>
+			<% if @expediente %>
+				<tr>
+					<th><%= f.label :Desde %> <%= '&nbsp' * 5 %></th>
+					<td><%= f.text_field :fecha_desde, :size => 20, :disabled => @consulta %>  formato dd/mm/aaa </td>
+				</tr>
+				<tr>
+					<th><%= f.label :Hasta %> <%= '&nbsp' * 5 %></th>				
+					<td><%= f.text_field :fecha_hasta, :size => 20, :disabled => @consulta %>  formato dd/mm/aaa</td>
+				</tr>
+			<% end %>
+			<% if @lista and !@lista.empty? %>
+				<tr>
+					<th><%= f.label :elija_expediente %></th>
+					<td>
+						<table>
+							<% @lista.each do |expediente| %>
+								<tr>
+									<td><%=h expediente.id %></td>
+									<td><%= link_to expediente.nombre,
+										:action => 'consultar', :id => expediente %></td>
+								</tr>
+							<% end %>
+						</table>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+		<p>
+			<%= f.submit @expediente ? 'Buscar' : 'Consultar' %>
+			<%= f.submit 'Cancelar' %>
+			<%= link_to 'Imprimir', { :action => :imprimir }, :target => '_blank' if @consulta and !@consulta.empty? %>
+		</p>
+	<% end %>
+	<% if @consulta and !@consulta.empty? %>
+		<table>
+			<tr>
+				<th>Fecha</th>
+				<th colspan='2'>Identificación</th>
+				<th>Entrada</th>
+				<th>Pase</th>
+				<th>Salida</th>
+				<th>Tipo</th>
+			</tr>
+			<% @consulta.each do |linea| %>
+				<tr>
+					<td align='right'><%=h linea.comprobante_de_mesa_de_entrada.fecha %></td>
+					<td><%=h linea.comprobante_de_mesa_de_entrada.tipo %></td>
+					<td><%=h linea.comprobante_de_mesa_de_entrada.numero %></td>
+					<td><%=h linea.entrada %></td>
+					<td><%=h linea.pase %></td>
+					<td><%=h linea.salida %></td>
+					<td><%=h linea.tipo %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	
+</div>

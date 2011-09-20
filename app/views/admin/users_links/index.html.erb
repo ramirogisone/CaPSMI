@@ -1,0 +1,31 @@
+<div id='main' >
+	<h1>Usuario: <%= "\"#{@user.id} - #{@user.login}\"" %> </h1>
+	<h2>Links asociados</h2>
+	<p>
+		<%= link_to 'Agregar link', new_admin_user_user_link_path %>
+	</p>
+	<table>
+		<tr>
+			<th colspan='3'>Link</th>
+			<th>Alta</th>
+			<th>Baja</th>
+			<th>Modificacion</th>
+			<th>Borrar</th>
+		</tr>
+		<% @relaciones.each do |user_link| %>
+			<tr>
+				<td><%=h user_link.link.posicion %></td>
+				<td align='right'><%=h user_link.link_id %></td>
+				<td><%=link_to user_link.link.nombre, edit_admin_user_user_link_path(@user, user_link) %></td>
+				<td align='center'><%=h user_link.alta ? 'Si' : '-' %></td>
+				<td align='center'><%=h user_link.baja ? 'Si' : '-' %></td>
+				<td align='center'><%=h user_link.modificacion ? 'Si' : '-' %></td>
+				<td align='center'><%=button_to 'X', [:admin, @user, user_link],
+					:confirm => 'Esta seguro?', :method => :delete, :disabled => permiso?('B') %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= link_to 'Usuarios', admin_users_path %>	
+	</p>
+</div>

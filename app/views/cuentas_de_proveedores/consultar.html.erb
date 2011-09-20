@@ -1,0 +1,69 @@
+<div id='main'>
+	<h1>Cuenta de proveedor:</h1>
+	<%= aviso %>
+	<% form_for @form, :url => 'consultar', :html => { :method => :get } do |f| %>
+		<table>
+			<tr>
+				<th><%= f.label :nombre_proveedor %></th>
+				<td><%= f.text_field :nombre, :size => 50, :disabled => @proveedor %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :id_proveedor %> <%= '&nbsp' * 5 %></th>
+				<td><%= f.text_field :id, :size => 5, :disabled => @proveedor %></td>
+				<%= f.hidden_field :id if @proveedor %>
+			</tr>
+			<% if @resultado and !@resultado.empty? %>
+				<tr>
+					<th><%= f.label :elija_proveedor %></th>
+					<td>
+						<table>
+							<% @resultado.each do |proveedor| %>
+								<tr>
+									<td><%=h proveedor.id %></td>
+									<td><%= link_to proveedor.nombre,
+										:action => 'consultar', :id => proveedor %></td>
+								</tr>
+							<% end %>
+						</table>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+		<p>
+			<%= f.submit 'Buscar' if !@proveedor %>
+			<%= f.submit 'Resumen de cuenta' if @proveedor %>
+			<%= f.submit 'Composición de saldo' if @proveedor %>
+			<%= f.submit 'Cancelar' %>
+			<%= link_to 'Imprimir', { :action => :imprimir }, :target => '_blank' if @consulta %>
+		</p>
+	<% end %>
+	<% if @consulta %>
+		<table>
+			<tr>
+				<th>Fecha</th>
+				<th>Identificación</th>
+				<th>Valor</th>
+				<th>Detalle</th>
+				<th>Débito</th>
+				<th>Crédito</th>
+				<th>Saldo<%= '&nbsp' * 5 %></th>
+				<th>Vto.</th>
+				<th>Aplicación</th>
+			</tr>
+			<% @consulta.each do |linea| %>
+				<tr>
+					<td><%=h linea.fecha %></td>
+					<td><%=h linea.identificacion %></td>
+					<td><%=h linea.valor %></td>
+					<td><%=h linea.detalle %></td>
+					<td align='right'><%=h linea.debito %></td>
+					<td align='right'><%=h linea.credito %></td>
+					<td align='right'><%=h linea.saldo %></td>
+					<td><%=h linea.vencimiento %></td>
+					<td><%=h linea.aplicacion %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	
+</div>

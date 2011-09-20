@@ -1,0 +1,88 @@
+<div id='main'>
+	<h1>Imprimir boleta</h1>
+	<p>
+		<h3>Elegir afiliado:</h3>
+	</p>
+	<%= aviso %>
+	<% form_for @form,
+			:url => { :controller => 'boletas', :action => 'buscar' },
+			:html => { :method => :post } do |f| %>
+		<table>
+			<tr>
+				<th><%= f.label :documento %></th>
+				<td><%= f.text_field :documento_afiliado, :size => 15,
+					:disabled => @afiliado %> sin separador de miles</td>
+			</tr>
+			<tr>
+				<th><%= f.label :nacimiento %></th>
+				<td><%= f.text_field :nacimiento_afiliado, :size => 20,
+					:disabled => @afiliado %> formato dd/mm/aaaa</td>
+			</tr>
+			<tr>
+				<th><%= f.label :incluir %></th>
+				<td>
+					<%= f.check_box :deuda_previsional, :disabled => @afiliado %>
+		 				<%= f.label :deuda_previsional %>
+					<%= f.check_box :deuda_financiacion, :disabled => @afiliado %>
+						<%= f.label :deuda_financiacion %>
+					<%= f.check_box :deuda_prestamo, :disabled => @afiliado %>
+						<%= f.label :deuda_prestamo %>
+				</td>
+			</tr>
+			<tr>
+				<th><%= f.label :numero_capsmi %></th>
+				<td><%= f.text_field :id_afiliado, :size => 15,
+					:disabled => @afiliado %> opcional</td>
+			</tr>
+			<tr>
+				<th><%= f.label :nombre %></th>
+				<td><%= f.text_field :nombre_afiliado, :size => 50, :disabled => true %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :actualizacion %></th>
+				<td><%= f.text_field :datos_importacion, :size => 20, :disabled => true %></td>
+			</tr>
+		</table>
+		<% unless @vencimientos and !@vencimientos.empty? %>
+			<p>
+				<% unless @afiliado %>
+					<%= f.submit 'Buscar' %>
+				<% end %>
+				<%= f.submit 'Cancelar' %>
+			</p>
+		<% end %>
+		<% if @vencimientos and @vencimientos.first %>
+			<p>
+				<%= f.submit 'Cancelar' %> |
+				<%= link_to 'Imprimir', { :action => :imprimir }, :target => '_blank' %>
+			</p>
+			<p>
+				<h3>Vencimientos:</h3>
+			</p>
+			<table>
+				<tr>
+					<th>Vencimiento</th>
+					<th>Deuda</th>
+					<th>Comprobante</th>
+					<th>detalle</th>
+					<th>Importe</th>
+				</tr>
+				<% @vencimientos.each do |vencimiento| %>
+					<tr>
+						<td><%=h vencimiento.vencimiento %></td>
+						<td><%=h vencimiento.tipo %></td>
+						<td><%=h vencimiento.tipo_comprobante %>
+							<%=h vencimiento.centro_comprobante %>
+							<%=h vencimiento.numero_comprobante.round %>
+							<%=h vencimiento.fecha_comprobante %></td>
+						<td><%=h vencimiento.detalle %></td>
+						<td align='right'><%=h ('%.2f' % vencimiento.importe) %></td>
+					</tr>
+				<% end %>
+				<tr>
+					<td colspan='5' align='right'><%= 'Total : '+('$%.2f' % @total) %></td>
+				</tr>
+			</table>
+		<% end %>
+	<% end %>
+</div>

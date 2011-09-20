@@ -1,0 +1,42 @@
+<h1>Legajo: <%=h "\"#{@legajo.id} - #{@legajo.apellido_y_nombres}\"" %></h1>
+<h2><%=h titulo %></h2>
+<% form_for([@legajo,@imagen_de_legajo], :html => { :multipart => true }) do |f| %>
+	<%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :imagen %></th>
+			<td>
+				<% if boton != 'Show' %>
+					<%= f.file_field :imagen %><br/>
+				<% end %>
+				<%= f.text_area :imagen, :size => '60x2', :disabled => true %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :tipo %></th>
+			<td><%= f.text_field :tipo, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :nombre %></th>
+			<td><%= f.text_field :nombre, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :id %></th>
+			<td><%= f.text_field :id, :disabled => true %></td>
+		</tr>
+	</table>
+	<p>
+		<% if boton == 'Show' %>
+			<%= link_to 'Editar', edit_legajo_imagen_de_legajo_path(@legajo,@imagen_de_legajo) %> |
+			<%= link_to 'Listar', legajo_imagenes_de_legajos_path %>
+		<% else %>
+			<%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			<%= link_to 'Cancelar', legajo_imagenes_de_legajos_path %>
+		<% end %>
+	</p>
+<% end %>
+
+<% if @imagen_de_legajo.imagen_file_name %>
+	<%= link_to image_tag(@imagen_de_legajo.imagen.url),
+		{:action => :show, :id => @imagen_de_legajo}, :target => '_blank' %>
+<% end %>

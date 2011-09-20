@@ -1,0 +1,41 @@
+<% form_for([:admin, @link]) do |f| %>
+  <%= f.error_messages %>
+  <table>
+    <tr>
+      <th><%= f.label :posicion %></th>
+      <td><%= f.text_field :posicion, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :nombre %></th>
+      <td><%= f.text_field :nombre, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :controlador %></th>
+      <td><%= f.text_field :controlador, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :accion %></th>
+      <td><%= f.text_field :accion, :disabled => boton == 'Show' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :estado %></th>
+      <td>
+        <% if boton == 'Show' %>
+          <%= f.text_field :estado, :disabled => boton == 'Show' %>
+        <% else %>
+          <%= f.select :estado,
+            options_for_select(@lista_de_estados, @link.estado) %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <p>
+    <% if boton == 'Show' %>
+      <%= link_to 'Editar', edit_admin_link_path(@estudio) %> |
+      <%= link_to 'Listar', admin_links_path %>
+    <% else %>
+      <%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+      <%= link_to 'Cancelar', admin_links_path %>
+    <% end %>
+  </p>
+<% end %>

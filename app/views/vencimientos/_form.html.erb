@@ -1,0 +1,72 @@
+<% form_for(@vencimiento) do |f| %>
+	<%= f.error_messages %>
+	<table>
+		<tr>
+			<th><%= f.label :importacion_de_vencimiento %></th>
+			<td>
+				<% if boton == 'Show' %>
+					<%= f.text_field :datos_importacion, :disabled => true %>
+				<% else %>
+					<%= f.select :importacion_de_vencimiento_id,
+						@importaciones_de_vencimientos.collect {|i| [ i.fecha.to_s+' '+i.id.to_s, i.id ]},
+							:selected => @vencimiento.importacion_de_vencimiento_id,
+							:include_blank => 'Elija una importacion' %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :afiliado_id %></th>
+			<td>
+				<% if boton == 'Show' %>
+					<%= f.text_field :nombre_afiliado, :disabled => true %>
+				<% else %>
+					<%= f.select :afiliado_id,
+						@afiliados.collect { |a| [ a.nombre, a.id ] },
+							:selected => @vencimiento.afiliado_id,
+							:include_blank => 'Elija un afiliado' %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :tipo %></th>
+			<td><%= f.text_field :tipo, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :tipo_comprobante %></th>
+			<td><%= f.text_field :tipo_comprobante, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :centro_comprobante %></th>
+			<td><%= f.text_field :centro_comprobante, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :numero_comprobante %></th>
+			<td><%= f.text_field :numero_comprobante, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :fecha_comprobante %></th>
+			<td><%= f.text_field :fecha_comprobante, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :vencimiento %></th>
+			<td><%= f.text_field :vencimiento, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :detalle %></th>
+			<td><%= f.text_field :detalle, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :importe %></th>
+			<td><%= f.text_field :importe, :disabled => boton == 'Show' %></td>
+		</tr>
+	</table>
+	<p>
+		<% if boton == 'Show' %>
+			<%= link_to 'Editar', edit_vencimiento_path(@vencimiento) %> |
+			<%= link_to 'Listar', vencimientos_path %>
+		<% else %>
+			<%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			<%= link_to 'Cancelar', vencimientos_path %>
+		<% end %>
+	</p>
+<% end %>

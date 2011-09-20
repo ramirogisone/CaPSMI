@@ -1,0 +1,2 @@
+class UserLink < LinkUser
+end

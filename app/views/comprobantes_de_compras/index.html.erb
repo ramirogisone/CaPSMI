@@ -1,0 +1,45 @@
+<div id='main' >
+	<h1>Comprobantes de compras</h1>
+	<p>
+		<%= link_to 'Nuevo comprobante', new_comprobante_de_compra_path %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Fecha</th>
+			<th colspan='3'>Identificación</th>
+			<th colspan='2'>Proveedor</th>
+			<th>Regimen iva</th>
+			<th>Total</th>
+			<th>Lineas</th>
+			<th>Borrar</th>
+		</tr>
+
+		<% @comprobantes_de_compras.each do |comprobante_de_compra| %>
+		<tr>
+			<td align='right'><%=h comprobante_de_compra.id %></td>
+			<td><%=link_to comprobante_de_compra.fecha,
+					edit_comprobante_de_compra_path(comprobante_de_compra) %></td>
+			<td><%=h comprobante_de_compra.tipo %></td>
+			<td><%=h comprobante_de_compra.centro %></td>
+			<td><%=h comprobante_de_compra.numero %></td>
+			<td align='right'><%=h comprobante_de_compra.proveedor_id %></td>
+			<td><%=h comprobante_de_compra.proveedor.nombre %></td>
+			<td><%=h comprobante_de_compra.regimen_iva %></td>
+			<td><%=h comprobante_de_compra.total %></td>
+			<td><%=button_to ' => ',
+				comprobante_de_compra_cuentas_de_proveedores_path(comprobante_de_compra),
+				:method => :get %>
+			</td>
+			<td align='center'>
+				<%=button_to 'X', comprobante_de_compra,
+						:confirm => 'Esta seguro?', :method => :delete, :disabled => permiso?('B') %>
+			</td>
+			<td align='center'>
+				<%= link_to image_tag('icono-impresora.gif', :size => '30x30', :title => 'Imprimir'),
+					{:action => :imprimir, :id => comprobante_de_compra}, :target => '_blank' %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div >

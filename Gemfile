@@ -1,0 +1,13 @@
+source :gemcutter
+gem "rails", "2.3.8"
+gem "sqlite3-ruby"
+gem "authlogic"
+gem "pdf-reader"
+gem "prawn"
+gem "prawnto"
+gem "barby"
+gem "i18n", "0.4.0"
+gem "paperclip", "2.3.5"
+gem "aws-s3"
+gem "will_paginate", "2.3.11"
+gem "dbf"

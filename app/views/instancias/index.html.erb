@@ -1,0 +1,29 @@
+<div id='main' >
+	<h1>Instancias</h1>
+	<p>
+		<%= link_to 'Nueva Instancia', new_instancia_path %>
+	</p>
+	<p>
+		<%= will_paginate @instancias, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Observaciones</th>
+			<th>Borrar</th>
+		</tr>
+		<% @instancias.each do |instancia| %>
+		  <tr>
+		  	<td><%=instancia.id  %></td>
+			<td><%=link_to instancia.nombre, edit_instancia_path(instancia)  %></td>
+			<td><%=h instancia.observaciones %></td>
+			<td align='center'><%=button_to 'X', instancia, :confirm => 'Está seguro ?',
+				:method => :delete, :disabled => permiso?('B') %></td>
+		  </tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @instancias, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

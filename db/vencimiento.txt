@@ -1,0 +1,1 @@
+ruby script/generate scaffold vencimiento afiliado:belongs_to tipo_comprobante:string centro_comprobante:integer numero_comprobante:float fecha_comprobante:date vencimiento:date detalle:string importe:float

@@ -1,0 +1,49 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  comprobante_de_compra: 
+  NUMERO: 1
+  FECHA: 2011-08-29
+  proveedor: 
+  CLASE_VALor: MyString
+  LOTE_VALor: 1
+  NUMERO_VALlor: 1
+  FECHA_VALor: 2011-08-29
+  MOVIMiento: MyString
+  IMPORTE: 1.5
+  TIPO_APlicado: MyString
+  CENTRO_APlicado: 1
+  NUMERO_APlicado: 1
+  FECHA_APlicado: 2011-08-29
+  VENCIMiento: 2011-08-29
+  DETALLE: MyString
+  FEC_GRAB: 2011-08-29
+  HOR_GRAB: MyString
+  WKS_GRAB: MyString
+  TIP_GRAB: MyString
+  USR_GRAB: MyString
+  REC_GRAB: 1
+
+two:
+  comprobante_de_compra: 
+  NUMERO: 1
+  FECHA: 2011-08-29
+  proveedor: 
+  CLASE_VALor: MyString
+  LOTE_VALor: 1
+  NUMERO_VALlor: 1
+  FECHA_VALor: 2011-08-29
+  MOVIMiento: MyString
+  IMPORTE: 1.5
+  TIPO_APlicado: MyString
+  CENTRO_APlicado: 1
+  NUMERO_APlicado: 1
+  FECHA_APlicado: 2011-08-29
+  VENCIMiento: 2011-08-29
+  DETALLE: MyString
+  FEC_GRAB: 2011-08-29
+  HOR_GRAB: MyString
+  WKS_GRAB: MyString
+  TIP_GRAB: MyString
+  USR_GRAB: MyString
+  REC_GRAB: 1

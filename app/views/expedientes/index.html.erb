@@ -1,0 +1,40 @@
+<div id='main' >
+	<h1>Expedientes</h1>
+	<p>
+		<%= link_to 'Nuevo expediente', new_expediente_path %>
+	</p>
+	<p>
+		<%= will_paginate @expedientes, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Tipo de expediente</th>
+			<th>Observaciones</th>
+			<th>Afiliado</th>
+			<th>Apertura</th>
+			<th>Cierre</th>
+			<th>Borrar</th>
+			<th>Impulsar</th>
+		</tr>
+		<% @expedientes.each do |expediente| %>
+			<tr>
+				<td><%=h expediente.id %></td>
+				<td><%=link_to expediente.nombre, edit_expediente_path(expediente) %></td>
+				<td><%=h expediente.nombre_tipo %></td>
+				<td><%=h expediente.observaciones %></td>
+				<td><%=h expediente.nombre_afiliado %></td>
+				<td><%=h expediente.fecha_de_apertura %></td>
+				<td><%=h expediente.fecha_de_cierre %></td>
+				<td align='center'><%=button_to 'X', expediente,
+					:confirm => 'Esta seguro?', :method => :delete, :disabled => permiso?('B') %></td>
+				<td align='center'><%= button_to ' => ', :controller => 'movimientos_de_mesa_de_entrada',
+					:action => 'impulsa_expediente', :expediente_id => expediente.id.to_s  %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @expedientes, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

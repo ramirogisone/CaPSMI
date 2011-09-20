@@ -1,0 +1,25 @@
+<div id='main' >
+	<h1>Imágenes de legajos</h1>
+	<p>
+		<%= will_paginate @imagenes_de_legajos, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Legajo</th>
+			<th>Apellido y nombres</th>
+			<th>Tipo</th>
+			<th>Nombre</th>
+		</tr>
+		<% @imagenes_de_legajos.each do |imagen_de_legajo| %>
+			<tr>
+				<td align='right'><%=h imagen_de_legajo.legajo.legajo %></td>
+				<td><%=h imagen_de_legajo.legajo.apellido_y_nombres %></td>
+				<td><%=h imagen_de_legajo.tipo %></td>
+				<td><%=h imagen_de_legajo.nombre %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @imagenes_de_legajos, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

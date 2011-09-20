@@ -1,0 +1,59 @@
+<div id='main' >
+	<h1>Proveedores</h1>
+	<p>
+		<%= link_to 'Nuevo proveedor', new_proveedor_path %>
+	</p>
+	<p>
+		<%= will_paginate @proveedores, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Código agrupación</th>
+			<th>Observaciones</th>
+			<th>Domicilio</th>
+			<th>Ciudad</th>
+			<th>Código postal</th>
+			<th>Provincia</th>
+			<th>Teléfonos</th>
+			<th>Fax</th>
+			<th>E mail</th>
+			<th>Area geográfica</th>
+			<th>Fec grab</th>
+			<th>Hor grab</th>
+			<th>Usr grab</th>
+			<th>Wks grab</th>
+			<th>Tip grab</th>
+			<th>Borrar</th>
+		</tr>
+		<% @proveedores.each do |proveedor| %>
+			<tr>
+				<td><%=h proveedor.id %></td>
+				<td><%=link_to proveedor.nombre, edit_proveedor_path(proveedor) %></td>
+				<td><%=h proveedor.codigo_agrupacion %></td>
+				<td><%=h proveedor.observaciones %></td>
+				<td><%=h proveedor.domicilio %></td>
+				<td><%=h proveedor.ciudad %></td>
+				<td><%=h proveedor.codigo_postal %></td>
+				<td><%=h proveedor.provincia %></td>
+				<td><%=h proveedor.telefonos %></td>
+				<td><%=h proveedor.fax %></td>
+				<td><%=h proveedor.e_mail %></td>
+				<td><%=h proveedor.area_geografica %></td>
+				<td><%=h proveedor.fec_grab %></td>
+				<td><%=h proveedor.hor_grab %></td>
+				<td><%=h proveedor.usr_grab %></td>
+				<td><%=h proveedor.wks_grab %></td>
+				<td><%=h proveedor.tip_grab %></td>
+				<td id='link' align='center'>
+					<%=button_to 'X', proveedor, :confirm => 'Esta seguro ?',
+						:method => :delete, :disabled => permiso?('B') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+  <p>
+	<%= will_paginate @proveedores, :previous_label => 'Previo', :next_label => 'Siguiente' %>
+  </p>
+</div>

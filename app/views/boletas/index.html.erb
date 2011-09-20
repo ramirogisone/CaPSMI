@@ -1,0 +1,30 @@
+<div id='main' >
+	<h1>Boletas</h1>
+	<p>
+		<%= will_paginate @boletas, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Vencimiento</th>
+			<th colspan='2'>Afiliado</th>
+			<th>Grabación</th>
+			<th>Total</th>
+			<th>Consultar</th>
+		</tr>
+		<% @boletas.each do |boleta| %>
+			<tr>
+				<td align='right'><%=h boleta.id %></td>
+				<td><%=h boleta.vencimiento %></td>
+				<td align='right'><%=h boleta.afiliado_id %></td>
+				<td><%=h boleta.afiliado.nombre %></td>
+				<td><%=h boleta.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+				<td align='right'><%=h ('%.2f' % boleta.total) if boleta.total %></td>
+				<td align='center'><%=button_to ' ==> ', :action => 'consultar', :boleta_id => boleta %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @boletas, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+	</p>
+</div>

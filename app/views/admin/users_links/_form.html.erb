@@ -1,0 +1,39 @@
+<% form_for([:admin, @user, @relacion]) do |f| %>
+	<%= f.error_messages %>
+	<%= aviso %>
+	<table>
+		<tr>
+			<th><%= f.label :link_id %></th>
+			<td>
+				<% if boton == 'Show' or boton == 'Actualizar'  %>
+					<%= f.text_field :nombre_link, :disabled => true %>
+				<% else %>
+					<%= f.select :link_id, @links.collect {|l| ["#{l.posicion} - #{l.nombre}", l.id]}, 
+						:include_blank => 'Elija un link' %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th><%= f.label :alta %></th>
+			<td><%= f.check_box :alta, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :baja %></th>
+			<td><%= f.check_box :baja, :disabled => boton == 'Show' %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :modificacion %></th>
+			<td><%= f.check_box :modificacion, :disabled => boton == 'Show' %></td>
+		</tr>
+	</table>
+	<p>
+		<% if boton == 'Show' %>
+			<%= link_to 'Editar', edit_admin_user_user_link_path(@user, @relacion) %> |
+			<%= link_to 'Agregar link', new_admin_user_user_link_path %> |
+			<%= link_to 'Listar', admin_user_users_links_path %>
+		<% else %>
+			<%= f.submit boton, :disabled => permiso?(boton == 'Crear' ? 'A' : 'M') %> |
+			<%= link_to 'Cancelar', admin_user_users_links_path %>
+		<% end %>
+	</p>
+<% end %>

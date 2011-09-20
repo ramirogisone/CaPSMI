@@ -1,0 +1,40 @@
+<div id='main' >
+	<h1>Impulsar expediente</h1>
+	<%= render :partial => '/expedientes/form', :locals => {:boton => 'Show', :no_links => true}  %>
+	<%= aviso %>
+	<% form_for(@form, :url => {:action => 'impulsa_expediente' }) do |f| %>
+		<table>
+			<tr>
+				<th><%= f.label :tipo_comprobante %><%= '&nbsp' * 2 %></th>
+				<td><%= f.select :tipo_comprobante, ['IME', 'PAS','RECH'], 
+						{:include_blank => 'Elija un tipo'}, {:disabled => true}   %></td>
+			</tr>
+			<tr>
+				<th><%= @movimiento != 'Pase' ? (f.label :instancia) : (f.label :instancia_origen_id) %></th>
+				<td><%= f.select :instancia_origen_id,
+					@instancias.collect {|i| ["#{i.nombre} - #{i.id}", i.id]},
+					:include_blank => 'Elija origen' %></td>
+			</tr>
+			<% if @movimiento == 'Pase' %>
+				<tr>
+					<th><%= f.label :instancia_destino_id %></th>
+					<td><%= f.select :instancia_destino_id,
+						@instancias.collect {|i| ["#{i.nombre} - #{i.id}", i.id]},
+						:include_blank => 'Elija destino' %></td>
+				</tr>
+			<% end %>
+			<tr>
+				<th><%= f.label :dias_plazo %></th>
+				<td><%= f.text_field :dias_plazo, :size => 8 %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :informe %></th>
+				<td><%= f.text_area :informe, :size => '40x4' %></td>
+			</tr>
+		</table>
+		<p>
+			<%= f.submit 'Impulsar' %>
+			<%= f.submit 'Cancelar' %>
+		</p>
+	<% end %>
+</div id='main' >

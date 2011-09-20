@@ -1,0 +1,35 @@
+<div id='main' >
+	<h1>Legajo: <%=h "\"#{@legajo.id} - #{@legajo.apellido}, #{@legajo.nombres}\"" %></h1>
+	<h2>Imágenes del legajo</h1>
+	<p>
+		<%= link_to 'Nueva imagen', new_legajo_imagen_de_legajo_path %>
+	</p>
+	<p>
+		<%= will_paginate @imagenes_de_legajos, :previous_label => 'Anterior',
+			:next_label => 'Siguiente' %>
+	</p>
+	<table>
+		<tr>
+			<th>Tipo</th>
+			<th>Nombre</th>
+			<th>Borrar</th>
+		</tr>
+		<% @imagenes_de_legajos.each do |imagen_de_legajo| %>
+			<tr>
+				<td><%=h imagen_de_legajo.tipo %></td>
+				<td><%=link_to imagen_de_legajo.nombre, edit_legajo_imagen_de_legajo_path(@legajo, imagen_de_legajo) %></td>
+				<td id='link' align='center'>
+					<%=button_to 'X', [@legajo, imagen_de_legajo],
+						:confirm => 'Esta seguro ?', :method => :delete, :disabled => permiso?('B') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	<p>
+		<%= will_paginate @imagenes_de_legajos, :previous_label => 'Anterior',
+			:next_label => 'Siguiente' %>
+	</p>
+	<p>
+		<%= link_to 'Legajos', legajos_path %>
+	</p>	
+</div>
